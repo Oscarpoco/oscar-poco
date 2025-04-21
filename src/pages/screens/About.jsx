@@ -1,0 +1,445 @@
+import React, { useState, useEffect } from "react";
+
+// STYLING
+import '../styles/About.css';
+import oscar from '../../assets/oscar.jfif'
+
+// ICONS
+import { FaFolderOpen, FaCalendarAlt, FaSmile, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { MdDownload, MdInfo, MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md';
+import { IoIosArrowForward } from 'react-icons/io';
+import { motion } from 'framer-motion'; // Animation library
+
+function About() {
+    const [activeTab, setActiveTab] = useState('featured');
+    const [darkMode, setDarkMode] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    
+    // Theme toggle handler
+    const toggleTheme = () => {
+        setDarkMode(!darkMode);
+        document.body.classList.toggle('dark-theme');
+    };
+
+    // Scroll event handler
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+    
+    // Sample data for the portfolio stats
+    const portfolioStats = [
+        {
+            id: 1,
+            title: "PROJECTS",
+            icon: <FaFolderOpen className="folder-icon" />,
+            count: 24,
+            color: "#2363C7", // Blue
+            gradient: "linear-gradient(135deg, #2363C7, #4285F4)",
+            users: [
+                "https://i.pravatar.cc/150?img=1",
+                "https://i.pravatar.cc/150?img=2",
+                "https://i.pravatar.cc/150?img=3",
+                "https://i.pravatar.cc/150?img=4"
+            ]
+        },
+        {
+            id: 2,
+            title: "EXPERIENCE",
+            icon: <FaCalendarAlt className="folder-icon" />,
+            count: 5,
+            subtitle: "Years",
+            color: "#1FA463", // Green
+            gradient: "linear-gradient(135deg, #1FA463, #27AE60)",
+            users: [
+                "https://i.pravatar.cc/150?img=5",
+                "https://i.pravatar.cc/150?img=6",
+                "https://i.pravatar.cc/150?img=7"
+            ]
+        },
+        {
+            id: 3,
+            title: "HAPPY CLIENTS",
+            icon: <FaSmile className="folder-icon" />,
+            count: 18,
+            color: "#E74C3C", // Red
+            gradient: "linear-gradient(135deg, #E74C3C, #FF7675)",
+            users: [
+                "https://i.pravatar.cc/150?img=8",
+                "https://i.pravatar.cc/150?img=9",
+                "https://i.pravatar.cc/150?img=10",
+                "https://i.pravatar.cc/150?img=11"
+            ]
+        }
+    ];
+
+    // Sample projects data
+    const featuredProjects = [
+        {
+            id: 1,
+            name: "E-Commerce Platform",
+            category: "Web Development",
+            icon: "https://img.icons8.com/fluency/48/000000/online-store.png",
+            lastModified: "Apr 12, 2025",
+            type: "React.js"
+        },
+        {
+            id: 2,
+            name: "Task Management App",
+            category: "Mobile App",
+            icon: "https://img.icons8.com/fluency/48/000000/todo-list.png",
+            lastModified: "Mar 28, 2025",
+            type: "React Native"
+        },
+        {
+            id: 3,
+            name: "Portfolio Dashboard",
+            category: "UI/UX Design",
+            icon: "https://img.icons8.com/fluency/48/000000/web-design.png",
+            lastModified: "Apr 18, 2025",
+            type: "React.js"
+        }
+    ];
+
+    // Animation variants
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: { 
+            opacity: 1,
+            transition: { 
+                when: "beforeChildren",
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: { 
+            y: 0, 
+            opacity: 1,
+            transition: {
+                type: "spring",
+                stiffness: 100
+            }
+        }
+    };
+
+    return (
+        <div className={`about-container ${darkMode ? 'dark-theme' : ''}`}>
+            {/* Floating Theme Toggle */}
+            <button className="theme-toggle" onClick={toggleTheme}>
+                {darkMode ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
+            </button>
+
+            {/* HEADER SECTION */}
+            <div className={`about-header ${isScrolled ? 'scrolled' : ''}`}>
+                <motion.div 
+                    className="header-left"
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <h1>My Portfolio</h1>
+                    <div className="breadcrumb">
+                        <span>Dashboard</span>
+                        <IoIosArrowForward className="breadcrumb-icon" />
+                        <span className="current-page">About Me</span>
+                    </div>
+                </motion.div>
+                
+                <motion.div 
+                    className="header-actions"
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                    <button className="action-button contact-btn">
+                        <MdInfo className="action-icon" />
+                        <span>Contact Info</span>
+                    </button>
+                    <button className="action-button download-btn primary">
+                        <MdDownload className="action-icon" />
+                        <span>Download CV</span>
+                    </button>
+                </motion.div>
+            </div>
+
+            {/* PROFILE SECTION */}
+            <motion.div 
+                className="profile-section"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                <div className="profile-content">
+                    <motion.div 
+                        className="profile-image-container"
+                        variants={itemVariants}
+                    >
+                        <div className="profile-image">
+                            <img 
+                                src={oscar}
+                                alt="Oscar Kyle Poco"
+                                className="avatar-image"
+                            />
+                            <div className="profile-badge">
+                                <span>5+</span>
+                            </div>
+                        </div>
+                        <div className="social-links">
+                            <motion.a 
+                                href="#" 
+                                className="social-link"
+                                whileHover={{ y: -5, scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                            >
+                                <FaGithub />
+                            </motion.a>
+                            <motion.a 
+                                href="#" 
+                                className="social-link"
+                                whileHover={{ y: -5, scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                            >
+                                <FaLinkedin />
+                            </motion.a>
+                            <motion.a 
+                                href="#"
+                                className="social-link"
+                                whileHover={{ y: -5, scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                            >
+                                <FaTwitter />
+                            </motion.a>
+                        </div>
+                    </motion.div>
+                    <motion.div 
+                        className="profile-info"
+                        variants={itemVariants}
+                    >
+                        <div className="name-badge">
+                            <h1 className="profile-name">Oscar Kyle Poco</h1>
+                            <span className="status-badge">Available for hire</span>
+                        </div>
+                        <h2 className="profile-title">Senior React Developer</h2>
+                        <p className="profile-description">
+                            Passionate developer with a knack for creating elegant, responsive and user-friendly 
+                            web applications. Specialized in React.js ecosystem with 5+ years of professional 
+                            experience building scalable solutions for various industries.
+                        </p>
+                        <div className="skills-container">
+                            <span className="skill-tag">React.js</span>
+                            <span className="skill-tag">TypeScript</span>
+                            <span className="skill-tag">Node.js</span>
+                            <span className="skill-tag">Redux</span>
+                            <span className="skill-tag">GraphQL</span>
+                            <span className="skill-tag">UI/UX</span>
+                        </div>
+                        <div className="profile-stats">
+                            <motion.div 
+                                className="stat-item"
+                                whileHover={{ y: -5, scale: 1.05 }}
+                            >
+                                <span className="stat-value">100%</span>
+                                <span className="stat-label">Client Satisfaction</span>
+                            </motion.div>
+                            <motion.div 
+                                className="stat-item"
+                                whileHover={{ y: -5, scale: 1.05 }}
+                            >
+                                <span className="stat-value">24+</span>
+                                <span className="stat-label">Projects Completed</span>
+                            </motion.div>
+                            <motion.div 
+                                className="stat-item"
+                                whileHover={{ y: -5, scale: 1.05 }}
+                            >
+                                <span className="stat-value">5+</span>
+                                <span className="stat-label">Years of Experience</span>
+                            </motion.div>
+                        </div>
+                    </motion.div>
+                </div>
+            </motion.div>
+
+            {/* QUICK ACCESS SECTION */}
+            <motion.div 
+                className="quick-access-section"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+            >
+                <div className="section-header">
+                    <h2>PORTFOLIO OVERVIEW</h2>
+                    <motion.button 
+                        className="more-btn"
+                        whileHover={{ x: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        View All <IoIosArrowForward className="arrow-icon" />
+                    </motion.button>
+                </div>
+
+                <div className="folders-container">
+                    {portfolioStats.map((stat, index) => (
+                        <motion.div 
+                            className="folder-card" 
+                            key={stat.id}
+                            style={{ background: stat.gradient }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 * index, duration: 0.5 }}
+                            whileHover={{ 
+                                y: -10,
+                                boxShadow: "0 20px 30px rgba(0, 0, 0, 0.15)" 
+                            }}
+                        >
+                            <div className="folder-header">
+                                <div className="folder-title">{stat.title}</div>
+                                <motion.div 
+                                    className="folder-icon-container"
+                                    whileHover={{ rotate: 15 }}
+                                >
+                                    {stat.icon}
+                                </motion.div>
+                            </div>
+                            <div className="folder-count">
+                                <motion.span 
+                                    className="count-number"
+                                    initial={{ opacity: 0, scale: 0.5 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: 0.5 + (0.2 * index), duration: 0.5 }}
+                                >
+                                    {stat.count}
+                                </motion.span>
+                                {stat.subtitle && <span className="count-subtitle">{stat.subtitle}</span>}
+                            </div>
+                            <div className="folder-users">
+                                {stat.users.map((user, userIndex) => (
+                                    <motion.div 
+                                        className="user-avatar" 
+                                        key={userIndex}
+                                        style={{ 
+                                            backgroundImage: `url(${user})`,
+                                            zIndex: stat.users.length - userIndex
+                                        }}
+                                        initial={{ x: 20 * userIndex, opacity: 0 }}
+                                        animate={{ x: 0, opacity: 1 }}
+                                        transition={{ delay: 0.7 + (0.1 * userIndex), duration: 0.3 }}
+                                    />
+                                ))}
+                                <motion.div 
+                                    className="user-avatar more"
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{ delay: 1, duration: 0.3 }}
+                                >
+                                    <span>+{stat.id + 3}</span>
+                                </motion.div>
+                            </div>
+                            <div className="folder-metadata">
+                                <span className="last-modified">Updated: Today</span>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+            </motion.div>
+
+            {/* PROJECTS SECTION */}
+            <motion.div 
+                className="projects-section"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+            >
+                <div className="projects-tabs">
+                    <button 
+                        className={`tab-button ${activeTab === 'featured' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('featured')}
+                    >
+                        Featured Projects
+                    </button>
+                    <button 
+                        className={`tab-button ${activeTab === 'recent' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('recent')}
+                    >
+                        Recent Work
+                    </button>
+                    <button 
+                        className={`tab-button ${activeTab === 'all' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('all')}
+                    >
+                        All Projects
+                    </button>
+                </div>
+
+                <div className="projects-table">
+                    <div className="projects-table-header">
+                        <div className="table-column name-column">NAME</div>
+                        <div className="table-column owner-column">CATEGORY</div>
+                        <div className="table-column modified-column">LAST MODIFIED</div>
+                        <div className="table-column size-column">TYPE</div>
+                        <div className="table-column actions-column"></div>
+                    </div>
+                    
+                    <motion.div 
+                        className="projects-table-body"
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        {featuredProjects.map((project, index) => (
+                            <motion.div 
+                                className="project-row" 
+                                key={project.id}
+                                variants={itemVariants}
+                                custom={index}
+                                whileHover={{ 
+                                    scale: 1.01,
+                                    backgroundColor: darkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(35, 99, 199, 0.03)',
+                                }}
+                            >
+                                <div className="table-column name-column">
+                                    <div className="project-name">
+                                        <motion.img 
+                                            src={project.icon} 
+                                            alt={project.name} 
+                                            className="project-icon"
+                                            whileHover={{ rotate: 10, scale: 1.1 }}
+                                        />
+                                        <span>{project.name}</span>
+                                    </div>
+                                </div>
+                                <div className="table-column owner-column">{project.category}</div>
+                                <div className="table-column modified-column">{project.lastModified}</div>
+                                <div className="table-column size-column">
+                                    <span className="project-type">{project.type}</span>
+                                </div>
+                                <div className="table-column actions-column">
+                                    <motion.button 
+                                        className="view-project-btn"
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        View
+                                    </motion.button>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </motion.div>
+        </div>
+    );
+}
+
+export default About;

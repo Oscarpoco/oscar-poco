@@ -8,11 +8,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 1em;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
 }
 
 /* DARK MODE STYLES */
@@ -20,7 +16,6 @@
 {
     background-color: #1a1a2e;
     color: #f0f0f0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .dark-mode .Portfolio-h2
