@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-// STYLING
-import '../styles/NavigationBar.css';
+import '../styles/NavigationBar.css'
 
 // ICONS
 import { FaCode } from "react-icons/fa";
@@ -14,6 +13,7 @@ import { AiOutlineStar } from "react-icons/ai";
 function NavigationBar() {
     const [darkMode, setDarkMode] = useState(false);
     const [notifications, setNotifications] = useState(3);
+    const [searchFocused, setSearchFocused] = useState(false);
 
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
@@ -21,36 +21,56 @@ function NavigationBar() {
         document.body.classList.toggle('dark-theme');
     };
 
+    // Animation for notification badge
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            const badge = document.querySelector('.notification-badge');
+            if (badge) badge.classList.add('pulse');
+        }, 1000);
+        
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <div className={`Parent-nav ${darkMode ? 'dark-mode' : ''}`}>
 
             {/* PORTFOLIO NAME */}
             <div className="Portfolio-name">
-                <FaCode className="Portfolio-h2" />
+                <FaCode className="logo-icon" />
                 <h2 className="Portfolio-h2">Portfolio</h2>
             </div>
 
             {/* SEARCH BAR */}
-            <div className="Portfolio-search">
+            <div className={`Portfolio-search ${searchFocused ? 'focused' : ''}`}>
                 <CiSearch className="search-icon" />
-                <input type="text" className="Search-bar" placeholder="Search Project..." />
+                <input 
+                    type="text" 
+                    className="Search-bar" 
+                    placeholder="Search Project..." 
+                    onFocus={() => setSearchFocused(true)}
+                    onBlur={() => setSearchFocused(false)}
+                />
             </div>
 
             {/* PORTFOLIO USER */}
             <div className="Portfolio-user">
                 {/* NOTIFICATION ICON */}
                 <div className="icon-container">
-                    <IoMdNotificationsOutline size={28} color="#555" className="nav-icon" />
+                    <IoMdNotificationsOutline size={24} className="nav-icon" />
                     {notifications > 0 && <span className="notification-badge">{notifications}</span>}
                 </div>
                 
                 {/* REVIEWS/STARS ICON */}
                 <div className="icon-container">
-                    <AiOutlineStar size={28} color="#555" className="nav-icon" />
+                    <AiOutlineStar size={24} className="nav-icon" />
                 </div>
                 
                 {/* USER INFO */}
-                <p className="name">Oscar Poco</p>
+                <div className="user-info">
+                    <p className="name">Oscar Poco</p>
+                    <p className="role">Developer</p>
+                </div>
+                
                 <div className="abbreviation">
                     <p className="abbreviation-name">O</p>
                 </div>
@@ -58,8 +78,8 @@ function NavigationBar() {
                 {/* DARK MODE TOGGLE */}
                 <div className="Dark-Mode" onClick={toggleDarkMode}>
                     {darkMode ? 
-                        <MdLightMode size={22} className="mode-icon" /> : 
-                        <MdDarkMode size={22} className="mode-icon" />
+                        <MdLightMode size={20} className="mode-icon" /> : 
+                        <MdDarkMode size={20} className="mode-icon" />
                     }
                 </div>
             </div>
