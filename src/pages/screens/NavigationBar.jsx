@@ -40,13 +40,13 @@ function NavigationBar() {
             <div className="Portfolio-user">
                 {/* NOTIFICATION ICON */}
                 <div className="icon-container">
-                    <IoMdNotificationsOutline size={28} className="nav-icon" />
+                    <IoMdNotificationsOutline size={28} color="#555" className="nav-icon" />
                     {notifications > 0 && <span className="notification-badge">{notifications}</span>}
                 </div>
                 
                 {/* REVIEWS/STARS ICON */}
                 <div className="icon-container">
-                    <AiOutlineStar size={28} className="nav-icon" />
+                    <AiOutlineStar size={28} color="#555" className="nav-icon" />
                 </div>
                 
                 {/* USER INFO */}

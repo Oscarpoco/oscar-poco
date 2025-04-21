@@ -1,7 +1,9 @@
 import { useState } from 'react'
 
 // SCREENS
-import NavigationBar from './pages/screens/NavigationBar';
+import NavigationBar from './pages/screens/NavigationBar.jsx';
+import SideBar from './pages/screens/SideBar.jsx';
+import Dashboard from "./pages/screens/Dashboard.jsx";
 
 // STYLINGS
 import './App.css';
@@ -20,7 +22,8 @@ function App() {
 
       {/* BOTTOM DEVIDER */}
       <div className='bottom'>
-
+        <SideBar />
+        <Dashboard />
       </div>
      
     </div>
