@@ -1,0 +1,228 @@
+.Parent-nav
+{
+    background-color: #fff;
+    padding: 1em 2em;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+/* DARK MODE STYLES */
+.Parent-nav.dark-mode
+{
+    background-color: #1a1a2e;
+    color: #f0f0f0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .Portfolio-h2
+{
+    color: #4d8bf5;
+}
+
+.dark-mode .name
+{
+    color: #f0f0f0;
+}
+
+.dark-mode .Search-bar
+{
+    background-color: #252547;
+    color: #f0f0f0;
+}
+
+.dark-mode .Portfolio-search
+{
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .search-icon,
+.dark-mode .nav-icon,
+.dark-mode .mode-icon
+{
+    color: #f0f0f0;
+}
+
+/* PORTFOLIO NAME */
+.Portfolio-name
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.Portfolio-h2
+{
+    font-size: 1.7em;
+    color: #2363C7;
+    font-weight: 900;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* PORTFOLIO USER */
+.Portfolio-user
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2em;
+}
+
+.name
+{
+    color: #333;
+    font-size: 1.2em;
+    font-weight: 400;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.abbreviation
+{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: #2363C7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(35, 99, 199, 0.4);
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.abbreviation:hover
+{
+    transform: scale(1.05);
+}
+
+.abbreviation-name
+{
+    color: #fff;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
+/* ICON CONTAINERS */
+.icon-container
+{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.notification-badge
+{
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ff3e3e;
+    color: white;
+    font-size: 0.7em;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-icon
+{
+    color: #555;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-icon:hover
+{
+    transform: scale(1.15);
+    color: #2363C7;
+}
+
+/* MODE */
+.Dark-Mode
+{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #2363C7;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.Dark-Mode:hover
+{
+    background-color: rgba(35, 99, 199, 0.1);
+    transform: scale(1.05);
+}
+
+.mode-icon
+{
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+/* PORTFOLIO SEARCH */
+.Portfolio-search
+{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 35%;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 20px;
+    padding: 0 1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.Portfolio-search:focus-within
+{
+    border-color: #2363C7;
+    box-shadow: 0 2px 8px rgba(35, 99, 199, 0.15);
+}
+
+.search-icon
+{
+    color: rgba(0, 0, 0, 0.6);
+    min-width: 24px;
+    transition: color 0.3s ease;
+}
+
+.Search-bar
+{
+    width: 100%;
+    height: 100%;
+    padding: 0 1em;
+    outline: none;
+    border: none;
+    background: transparent;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.Search-bar::placeholder
+{
+    color: rgba(0, 0, 0, 0.4);
+    transition: color 0.3s ease;
+}
+
+.dark-mode .Search-bar::placeholder
+{
+    color: rgba(255, 255, 255, 0.4);
+}

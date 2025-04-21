@@ -1,6 +1,13 @@
 import { useState } from 'react'
-import './App.css'
 
+// SCREENS
+import NavigationBar from './pages/screens/NavigationBar';
+
+// STYLINGS
+import './App.css';
+
+
+// COMPONENT
 function App() {
 
   return (
@@ -8,18 +15,17 @@ function App() {
 
       {/* TOP DEVIDER */}
       <div className='top'>
-        
+        <NavigationBar/>
       </div>
-      {/* ENDS */}
 
       {/* BOTTOM DEVIDER */}
       <div className='bottom'>
 
       </div>
-      {/* ENDS */}
      
     </div>
   )
 }
 
 export default App
+// ENDS
