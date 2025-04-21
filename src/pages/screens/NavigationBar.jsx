@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-import '../styles/NavigationBar.css'
+import '../styles/NavigationBar.css';
 
 // ICONS
 import { FaCode } from "react-icons/fa";
@@ -8,19 +7,19 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { AiOutlineStar } from "react-icons/ai";
+import { IoSettingsOutline } from "react-icons/io5";
 
-// COMPONENT
 function NavigationBar() {
     const [darkMode, setDarkMode] = useState(false);
     const [notifications, setNotifications] = useState(3);
     const [searchFocused, setSearchFocused] = useState(false);
-
+    
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
         // Here you would implement your dark mode logic
         document.body.classList.toggle('dark-theme');
     };
-
+    
     // Animation for notification badge
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -30,45 +29,46 @@ function NavigationBar() {
         
         return () => clearTimeout(timer);
     }, []);
-
+    
     return (
-        <div className={`Parent-nav ${darkMode ? 'dark-mode' : ''}`}>
-
+        <nav className={`Parent-nav ${darkMode ? 'dark-mode' : ''}`}>
             {/* PORTFOLIO NAME */}
             <div className="Portfolio-name">
                 <FaCode className="logo-icon" />
                 <h2 className="Portfolio-h2">Portfolio</h2>
             </div>
-
+            
             {/* SEARCH BAR */}
             <div className={`Portfolio-search ${searchFocused ? 'focused' : ''}`}>
                 <CiSearch className="search-icon" />
                 <input 
+                    className="Search-bar"
                     type="text" 
-                    className="Search-bar" 
-                    placeholder="Search Project..." 
+                    placeholder="Search projects, skills, or technologies..."
                     onFocus={() => setSearchFocused(true)}
                     onBlur={() => setSearchFocused(false)}
                 />
             </div>
-
+            
             {/* PORTFOLIO USER */}
             <div className="Portfolio-user">
                 {/* NOTIFICATION ICON */}
                 <div className="icon-container">
-                    <IoMdNotificationsOutline size={24} className="nav-icon" />
-                    {notifications > 0 && <span className="notification-badge">{notifications}</span>}
+                    <IoMdNotificationsOutline className="nav-icon" size={28} />
+                    {notifications > 0 && (
+                        <span className="notification-badge">{notifications}</span>
+                    )}
                 </div>
                 
                 {/* REVIEWS/STARS ICON */}
                 <div className="icon-container">
-                    <AiOutlineStar size={24} className="nav-icon" />
+                    <IoSettingsOutline  className="nav-icon" size={28} />
                 </div>
                 
                 {/* USER INFO */}
                 <div className="user-info">
                     <p className="name">Oscar Poco</p>
-                    <p className="role">Developer</p>
+                    <p className="role">React Developer</p>
                 </div>
                 
                 <div className="abbreviation">
@@ -78,14 +78,13 @@ function NavigationBar() {
                 {/* DARK MODE TOGGLE */}
                 <div className="Dark-Mode" onClick={toggleDarkMode}>
                     {darkMode ? 
-                        <MdLightMode size={20} className="mode-icon" /> : 
-                        <MdDarkMode size={20} className="mode-icon" />
+                        <MdLightMode className="mode-icon" size={20} /> : 
+                        <MdDarkMode className="mode-icon" size={20} />
                     }
                 </div>
             </div>
-
-        </div>
-    )
+        </nav>
+    );
 }
 
 export default NavigationBar;
