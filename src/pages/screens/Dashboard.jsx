@@ -5,6 +5,13 @@ import '../styles/Dashboard.css'
 
 // COMPONENTS
 import About from "./About";
+import Skills from "./Skills";
+import Education from "./Education";
+import Experience from "./Experience";
+import Featured from "./Featured";
+import Testimonials from "./Testimonials";
+import Contacts from "./Contact";
+import Error404 from "./Error404";
 
 
 function Dashboard({ activeItem }) {
@@ -13,19 +20,19 @@ function Dashboard({ activeItem }) {
             case "Dashboard":
                 return <About />;
             case "Skills":
-                return <div>Skills Component</div>; 
+                return <Skills/>; 
             case "Experience":
-                return <div>Experience Component</div>; 
+                return <Experience/>; 
             case "Education":
-                return <div>Education Component</div>;
+                return <Education/>;
             case "Featured":
-                return <div>Featured Component</div>;
+                return <Featured/>;
             case "Testimonials":
-                return <div>Testimonials Component</div>;
+                return <Testimonials/>;
             case "Contact":
-                return <div>Contact Component</div>;
+                return <Contacts/>;
             default:
-                return <div>Page Not Found</div>;
+                return <Error404/>;
         }
     };
 
