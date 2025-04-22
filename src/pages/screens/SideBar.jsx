@@ -11,16 +11,14 @@ import { FaProjectDiagram, FaLaptopCode } from "react-icons/fa";
 import { BsAward } from "react-icons/bs";
 import { IoRocketOutline } from "react-icons/io5";
 
-function SideBar() {
-    const [activeItem, setActiveItem] = useState("Dashboard");
+function SideBar({ activeItem, setActiveItem }) {
     const [isAnimating, setIsAnimating] = useState(false);
 
-    // Animation for progress bars
     useEffect(() => {
         const animationTimeout = setTimeout(() => {
             setIsAnimating(true);
         }, 300);
-        
+
         return () => clearTimeout(animationTimeout);
     }, []);
 

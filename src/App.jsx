@@ -8,27 +8,21 @@ import Dashboard from "./pages/screens/Dashboard.jsx";
 // STYLINGS
 import './App.css';
 
-
-// COMPONENT
 function App() {
+  const [activeItem, setActiveItem] = useState("Dashboard");
 
   return (
     <div className='Parent'>
-
-      {/* TOP DEVIDER */}
       <div className='top'>
         <NavigationBar/>
       </div>
 
-      {/* BOTTOM DEVIDER */}
       <div className='bottom'>
-        <SideBar />
-        <Dashboard />
+        <SideBar activeItem={activeItem} setActiveItem={setActiveItem} />
+        <Dashboard activeItem={activeItem} />
       </div>
-     
     </div>
-  )
+  );
 }
 
-export default App
-// ENDS
+export default App;
