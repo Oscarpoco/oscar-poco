@@ -1,0 +1,341 @@
+/* Education.css */
+
+/* Common Section Styling */
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 16px;
+    position: relative;
+    display: inline-block;
+  }
+  
+  
+  /* Education Section */
+  .education-section {
+    padding: 40px 0;
+  }
+  
+  .education-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* max-width: 800px; */
+    margin: 0 auto;
+  }
+  
+  /* Education Card */
+  .education-card {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
+  
+  .education-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 102, 255, 0.12);
+  }
+  
+  /* Left accent bar */
+  .education-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 6px;
+    background-color: #0066ff;
+    border-radius: 4px 0 0 4px;
+  }
+  
+  /* Education Icon */
+  .education-icon {
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 102, 255, 0.08);
+    border-right: 1px solid rgba(0, 102, 255, 0.1);
+    font-size: 30px;
+    color: #0066ff;
+    transition: all 0.3s ease;
+  }
+  
+  .education-card:hover .education-icon {
+    background-color: #0066ff;
+    color: white;
+  }
+  
+  /* Education Content */
+  .education-content {
+    padding: 28px 30px;
+  }
+  
+  .education-degree {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .education-institution {
+    font-size: 16px;
+    color: #0066ff;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  
+  /* Meta Information */
+  .education-meta {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .education-period, .education-location {
+    display: flex;
+    align-items: center;
+  }
+  
+  .meta-icon {
+    margin-right: 8px;
+    color: #0066ff;
+    font-size: 16px;
+  }
+  
+  /* Description */
+  .education-description {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 24px;
+  }
+  
+  /* Courses */
+  .courses-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  .courses-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .course-tag {
+    padding: 6px 14px;
+    background-color: rgba(0, 102, 255, 0.08);
+    color: #0066ff;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .course-tag:hover {
+    background-color: #0066ff;
+    color: white;
+    transform: translateY(-3px);
+  }
+  
+  /* Certificate Section */
+  .certificates-section {
+    padding: 40px 0 60px;
+  }
+  
+  .certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 0 auto;
+  }
+  
+  /* Certificate Card */
+  .certificate-card {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    text-align: center;
+  }
+  
+  .certificate-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Certificate Icon */
+  .certificate-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .certificate-card:hover .certificate-icon {
+    transform: scale(1.1);
+  }
+  
+  /* Certificate Content */
+  .certificate-content {
+    width: 100%;
+  }
+  
+  .certificate-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  
+  .certificate-issuer {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+  
+  .certificate-date {
+    font-size: 13px;
+    color: #888;
+    font-weight: 500;
+  }
+  
+  /* Active Education Card State */
+  .education-card.active {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 102, 255, 0.12);
+  }
+  
+  .education-card.active .education-icon {
+    background-color: #0066ff;
+    color: white;
+  }
+  
+  /* Dark Theme Styles */
+  .dark-theme .section-title {
+    color: #f0f0f0;
+  }
+  
+  .dark-theme .section-subtitle {
+    color: #bbb;
+  }
+  
+  .dark-theme .education-card, 
+  .dark-theme .certificate-card {
+    background-color: #1e1e2d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dark-theme .education-degree,
+  .dark-theme .certificate-title,
+  .dark-theme .courses-title {
+    color: #f0f0f0;
+  }
+  
+  .dark-theme .education-description,
+  .dark-theme .certificate-issuer {
+    color: #bbb;
+  }
+  
+  .dark-theme .education-meta,
+  .dark-theme .certificate-date {
+    color: #aaa;
+  }
+  
+  .dark-theme .education-icon {
+    border-right-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .certificates-grid {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 90%;
+    }
+    
+    .education-cards {
+      max-width: 90%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .education-card {
+      grid-template-columns: 1fr;
+    }
+    
+    .education-icon {
+      width: 100%;
+      height: 60px;
+      border-right: none;
+      border-bottom: 1px solid rgba(0, 102, 255, 0.1);
+    }
+    
+    .education-meta {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .certificates-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+      font-size: 28px;
+    }
+    
+    .certificate-card {
+      padding: 24px 16px;
+    }
+    
+    .certificate-icon {
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    
+    .education-content {
+      padding: 24px 20px;
+    }
+    
+    .education-degree {
+      font-size: 20px;
+    }
+    
+    .courses-list {
+      gap: 8px;
+    }
+    
+    .course-tag {
+      padding: 5px 12px;
+      font-size: 12px;
+    }
+  }

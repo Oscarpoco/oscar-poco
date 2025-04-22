@@ -1,0 +1,256 @@
+
+
+/* Main Container */
+.modern-experience-container {
+    padding: 40px 0;
+  }
+  
+  
+  /* Experience Cards Layout */
+  .experience-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    /* max-width: 800px; */
+    margin: 0 auto;
+  }
+  
+  /* Experience Card */
+  .experience-card {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .experience-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 102, 255, 0.12);
+  }
+  
+  /* Blue accent on the left side */
+  .experience-card-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 6px;
+    background-color: #0066ff;
+    border-radius: 4px 0 0 4px;
+  }
+  
+  /* Card Icon */
+  .experience-card-icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(0, 102, 255, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0066ff;
+    font-size: 22px;
+    transition: all 0.3s ease;
+  }
+  
+  .experience-card:hover .experience-card-icon {
+    background-color: #0066ff;
+    color: white;
+    transform: rotate(360deg);
+  }
+  
+  /* Card Content */
+  .experience-card-content {
+    padding: 28px 24px;
+  }
+  
+  /* Card Header */
+  .experience-card-header {
+    margin-bottom: 20px;
+    padding-right: 60px; /* Make room for the icon */
+  }
+  
+  .experience-position {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  
+  .experience-company {
+    display: block;
+    font-size: 16px;
+    color: #0066ff;
+    font-weight: 500;
+  }
+  
+  /* Card Meta Information */
+  .experience-card-meta {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .experience-period, .experience-location {
+    display: flex;
+    align-items: center;
+  }
+  
+  .experience-meta-icon {
+    margin-right: 8px;
+    color: #0066ff;
+    font-size: 16px;
+  }
+  
+  /* Card Description */
+  .experience-description {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 24px;
+  }
+  
+  /* Technologies Tags */
+  .experience-tech-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .experience-tech-tag {
+    padding: 6px 14px;
+    background-color: rgba(0, 102, 255, 0.08);
+    color: #0066ff;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .experience-tech-tag:hover {
+    background-color: #0066ff;
+    color: white;
+    transform: translateY(-3px);
+  }
+  
+  /* Active Card State */
+  .experience-card.active {
+    border-left: none;
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 102, 255, 0.12);
+  }
+  
+  .experience-card.active .experience-card-icon {
+    background-color: #0066ff;
+    color: white;
+  }
+  
+  /* Hover Animations */
+  .experience-card:hover .experience-card-accent {
+    height: 100%;
+  }
+  
+  /* Dark Theme Styles */
+  .dark-theme .experience-title {
+    color: #f0f0f0;
+  }
+  
+  .dark-theme .experience-subtitle {
+    color: #bbb;
+  }
+  
+  .dark-theme .experience-card {
+    background-color: #1e1e2d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dark-theme .experience-position {
+    color: #f0f0f0;
+  }
+  
+  .dark-theme .experience-description {
+    color: #bbb;
+  }
+  
+  .dark-theme .experience-card-meta {
+    color: #aaa;
+  }
+  
+  /* Responsive Styles */
+  @media (min-width: 992px) {
+    .experience-card:nth-child(even) {
+      transform: translateX(40px);
+    }
+    
+    .experience-card:nth-child(even):hover {
+      transform: translateX(40px) translateY(-10px);
+    }
+    
+    .experience-card:nth-child(odd) {
+      transform: translateX(-40px);
+    }
+    
+    .experience-card:nth-child(odd):hover {
+      transform: translateX(-40px) translateY(-10px);
+    }
+    
+    .experience-card.active:nth-child(even) {
+      transform: translateX(40px) translateY(-10px);
+    }
+    
+    .experience-card.active:nth-child(odd) {
+      transform: translateX(-40px) translateY(-10px);
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .experience-cards {
+      max-width: 90%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .experience-card-meta {
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .experience-tech-container {
+      gap: 8px;
+    }
+    
+    .experience-tech-tag {
+      padding: 5px 12px;
+      font-size: 12px;
+    }
+    
+    .experience-position {
+      font-size: 20px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .experience-cards {
+      max-width: 100%;
+    }
+    
+    .experience-card-content {
+      padding: 24px 20px;
+    }
+    
+    .experience-card-icon {
+      width: 40px;
+      height: 40px;
+      top: 20px;
+      right: 20px;
+      font-size: 18px;
+    }
+  }
