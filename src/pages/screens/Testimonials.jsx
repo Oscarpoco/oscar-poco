@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 
 // STYLING
 import '../styles/About.css';
-import '../styles/Skills.css';
-
+import '../styles/Testimonials.css';
 
 // ICONS
-import { FaFolderOpen, FaCalendarAlt, FaSmile, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { MdDownload, MdInfo, MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md';
 import { IoIosArrowForward } from 'react-icons/io';
 import { motion } from 'framer-motion'; // Animation library
@@ -14,6 +13,7 @@ import { motion } from 'framer-motion'; // Animation library
 function Testimonials() {
     const [darkMode, setDarkMode] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [activeTestimonial, setActiveTestimonial] = useState(0);
     
     // Theme toggle handler
     const toggleTheme = () => {
@@ -35,6 +35,19 @@ function Testimonials() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
     
+    // Auto-rotate testimonials
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+        }, 5000);
+        
+        return () => clearInterval(interval);
+    }, []);
+
+    // Handle manual testimonial navigation
+    const goToTestimonial = (index) => {
+        setActiveTestimonial(index);
+    };
 
     // Animation variants
     const containerVariants = {
@@ -60,16 +73,52 @@ function Testimonials() {
         }
     };
 
+    // Sample testimonial data
+    const testimonials = [
+        {
+            id: 1,
+            name: "Emily Johnson",
+            role: "UI/UX Designer",
+            avatar: "https://i.pravatar.cc/150?img=1",
+            content: "Working with this team was an incredible experience. The attention to detail and creative solutions exceeded my expectations.",
+            rating: 5,
+            company: "Design Studios Inc."
+        },
+        {
+            id: 2,
+            name: "Michael Chen",
+            role: "Project Manager",
+            avatar: "https://i.pravatar.cc/150?img=2",
+            content: "I was impressed by the professionalism and timely delivery. Our project was completed ahead of schedule with outstanding quality.",
+            rating: 5,
+            company: "Tech Innovations"
+        },
+        {
+            id: 3,
+            name: "Sophia Williams",
+            role: "Marketing Director",
+            avatar: "https://i.pravatar.cc/150?img=3",
+            content: "The creative approach and strategic insights provided by this team helped us boost our conversion rates significantly.",
+            rating: 4,
+            company: "Growth Marketing Co."
+        }
+    ];
+
     return (
-        <div className={`about-container ${darkMode ? 'dark-theme' : ''}`}>
+        <div className={`about-container ${darkMode ? 'dark-theme' : ''}`} id="testimonials-wrapper">
             {/* Floating Theme Toggle */}
-            <button className="theme-toggle" onClick={toggleTheme}>
+            <motion.button 
+                className="theme-toggle" 
+                onClick={toggleTheme}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+            >
                 {darkMode ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
-            </button>
+            </motion.button>
 
             {/* HEADER SECTION */}
             <div className={`about-header ${isScrolled ? 'scrolled' : ''}`}>
-                <motion.div 
+                <motion.div
                     className="header-left"
                     initial={{ x: -50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -79,27 +128,167 @@ function Testimonials() {
                     <div className="breadcrumb">
                         <span>Dashboard</span>
                         <IoIosArrowForward className="breadcrumb-icon" />
-                        <span className="current-page">Reviews</span>
+                        <span className="current-page">What They Say</span>
                     </div>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                     className="header-actions"
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button contact-btn">
+                    <motion.button 
+                        className="action-button contact-btn"
+                        whileHover={{ y: -5, boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.2)" }}
+                        whileTap={{ y: 0, boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)" }}
+                    >
                         <MdInfo className="action-icon" />
                         <span>Contact Info</span>
-                    </button>
-                    <button className="action-button download-btn primary">
+                    </motion.button>
+                    <motion.button 
+                        className="action-button download-btn primary"
+                        whileHover={{ y: -5, boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.2)" }}
+                        whileTap={{ y: 0, boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)" }}
+                    >
                         <MdDownload className="action-icon" />
                         <span>Download CV</span>
-                    </button>
+                    </motion.button>
                 </motion.div>
             </div>
 
+            {/* TESTIMONIALS SECTION */}
+            <motion.div 
+                className="testimonials-section"
+                initial="hidden"
+                animate="visible"
+                variants={containerVariants}
+            >
+                <div 
+                    className="section-header">
+                    <h2 className="section-title">Client Testimonials</h2>
+                </div>
+                
+                <motion.div 
+                    className="testimonials-slider"
+                    variants={itemVariants}
+                >
+                    <div className="testimonials-wrapper" style={{ transform: `translateX(-${activeTestimonial * 100}%)` }}>
+                        {testimonials.map((testimonial, index) => (
+                            <motion.div 
+                                key={testimonial.id} 
+                                className="testimonial-card"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: index === activeTestimonial ? 1 : 0.5, y: 0 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                <div className="testimonial-header">
+                                    <motion.img 
+                                        src={testimonial.avatar} 
+                                        alt={testimonial.name} 
+                                        className="testimonial-avatar"
+                                        whileHover={{ scale: 1.1, rotate: 5 }}
+                                    />
+                                    <div className="testimonial-info">
+                                        <h3>{testimonial.name}</h3>
+                                        <p className="testimonial-role">{testimonial.role} at {testimonial.company}</p>
+                                    </div>
+                                </div>
+                                <div className="testimonial-rating">
+                                    {[...Array(5)].map((_, i) => (
+                                        <motion.span 
+                                            key={i} 
+                                            className={`rating-star ${i < testimonial.rating ? 'filled' : ''}`}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.1 * i }}
+                                        >
+                                            ★
+                                        </motion.span>
+                                    ))}
+                                </div>
+                                <motion.p 
+                                    className="testimonial-content"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.3 }}
+                                >
+                                    "{testimonial.content}"
+                                </motion.p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.div>
+                
+                <div className="testimonial-dots">
+                    {testimonials.map((_, index) => (
+                        <motion.span 
+                            key={index} 
+                            className={`dot ${activeTestimonial === index ? 'active' : ''}`}
+                            onClick={() => goToTestimonial(index)}
+                            whileHover={{ scale: 1.2 }}
+                            whileTap={{ scale: 0.9 }}
+                            animate={
+                                activeTestimonial === index 
+                                ? { scale: 1.2, backgroundColor: "#2363C7" } 
+                                : { scale: 1, backgroundColor: "#e0e0e0" }
+                            }
+                        />
+                    ))}
+                </div>
+            </motion.div>
+
+            {/* CALL TO ACTION */}
+            <motion.div 
+                className="testimonial-cta"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                whileHover={{ scale: 1.02 }}
+            >
+                <h3>Ready to work together?</h3>
+                <p>Let's create something amazing</p>
+                <motion.button 
+                    className="cta-button"
+                    whileHover={{ y: -8, boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.3)" }}
+                    whileTap={{ y: 0, boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)" }}
+                >
+                    Get In Touch
+                </motion.button>
+            </motion.div>
+            
+            {/* Social Links */}
+            <motion.div 
+                className="social-links"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.5 }}
+            >
+                <motion.a 
+                    href="#" 
+                    className="social-link"
+                    whileHover={{ y: -8, backgroundColor: "#2363C7", color: "#ffffff" }}
+                    whileTap={{ y: 0 }}
+                >
+                    <FaGithub />
+                </motion.a>
+                <motion.a 
+                    href="#" 
+                    className="social-link"
+                    whileHover={{ y: -8, backgroundColor: "#2363C7", color: "#ffffff" }}
+                    whileTap={{ y: 0 }}
+                >
+                    <FaLinkedin />
+                </motion.a>
+                <motion.a 
+                    href="#" 
+                    className="social-link"
+                    whileHover={{ y: -8, backgroundColor: "#2363C7", color: "#ffffff" }}
+                    whileTap={{ y: 0 }}
+                >
+                    <FaTwitter />
+                </motion.a>
+            </motion.div>
         </div>
     );
 }
