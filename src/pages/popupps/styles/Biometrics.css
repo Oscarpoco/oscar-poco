@@ -1,0 +1,927 @@
+/* Base container styles */
+.biometrics-container {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+  }
+  
+  .biometrics-content {
+    width: 90%;
+    max-width: 1000px;
+    height: 90%;
+    background: #1a1d24;
+    border-radius: 20px;
+    box-shadow: 0 0 50px rgba(35, 99, 199, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #2363C7;
+    position: relative;
+    color: white;
+    font-family: 'Roboto', 'Arial', sans-serif;
+  }
+  
+  /* Glowing border effect */
+  .glowing-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    border: 1px solid #2363C7;
+    z-index: 0;
+    box-shadow: 0 0 15px #2363C7, inset 0 0 15px #2363C7;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  /* Grid background */
+  .grid-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(to right, rgba(35, 99, 199, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(35, 99, 199, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 0;
+  }
+  
+  /* Header styles */
+  .biometrics-header {
+    background: #131720;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #2363C7;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .header-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .shield-icon {
+    color: #2363C7;
+    font-size: 24px;
+  }
+  
+  .header-title h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(35, 99, 199, 0.5);
+  }
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .header-status {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .circle-notch {
+    color: #555b66;
+    font-size: 18px;
+  }
+  
+  .status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #f44336;
+    box-shadow: 0 0 10px rgba(244, 67, 54, 0.5);
+  }
+  
+  .status-indicator.unlocked {
+    background-color: #4caf50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  .close-button:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Main content area */
+  .biometrics-main {
+    flex: 1;
+    padding: 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  /* Connecting lines */
+  .connecting-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  /* Gear mechanism */
+  .gear-mechanism {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    z-index: 2;
+  }
+  
+  .central-gear {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #2363C7;
+    font-size: 120px;
+    filter: drop-shadow(0 0 10px rgba(35, 99, 199, 0.5));
+  }
+  
+  .outer-gear {
+    position: absolute;
+    color: #3b88fd;
+    font-size: 60px;
+    filter: drop-shadow(0 0 5px rgba(35, 99, 199, 0.3));
+  }
+  
+  .top-left {
+    top: 15%;
+    left: 15%;
+  }
+  
+  .top-right {
+    top: 15%;
+    right: 15%;
+  }
+  
+  .bottom-left {
+    bottom: 5%;
+    left: 15%;
+  }
+  
+  .bottom-right {
+    bottom: -30%;
+    right: 5%;
+  }
+  
+  .fingerprint-container {
+    position: absolute;
+    bottom: -20%;
+    left: -20%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(19, 23, 32, 0.7);
+    border: 1px solid #2363C7;
+    box-shadow: 0 0 20px rgba(35, 99, 199, 0.3);
+    cursor: pointer;
+  }
+  
+  .fingerprint-icon {
+    color: #2363C7;
+    font-size: 40px;
+    filter: drop-shadow(0 0 5px rgba(35, 99, 199, 0.8));
+  }
+  
+  .unlock-icon {
+    color: #4caf50;
+    font-size: 40px;
+    filter: drop-shadow(0 0 5px rgba(76, 175, 80, 0.8));
+  }
+  
+  /* Input nodes */
+  .input-node {
+    position: absolute;
+    background: rgba(30, 36, 46, 0.8);
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid #2363C7;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 3;
+    transition: all 0.3s ease;
+  }
+  
+  .input-node:hover {
+    box-shadow: 0 5px 20px rgba(35, 99, 199, 0.4);
+  }
+  
+  .node-1 {
+    top: 10%;
+    left: 20%;
+  }
+  
+  .node-2 {
+    top: 25%;
+    right: 20%;
+  }
+  
+  .node-3 {
+    bottom: 25%;
+    left: 15%;
+  }
+  
+  .node-4 {
+    bottom: 25%;
+    right: 25%;
+  }
+  
+  .node-5 {
+    bottom: 15%;
+    left: 45%;
+    transform: translateX(-50%);
+  }
+  
+  .node-label {
+    font-size: 12px;
+    color: #2363C7;
+    margin-bottom: 8px;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  
+  .code-input {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    background: #131720;
+    border: 1px solid #2363C7;
+    border-radius: 10px;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: monospace;
+    outline: none;
+    transition: all 0.3s ease;
+    caret-color: #2363C7;
+  }
+  
+  .code-input:focus {
+    border-color: #4287f5;
+    box-shadow: 0 0 0 2px rgba(35, 99, 199, 0.3), 0 0 15px rgba(35, 99, 199, 0.5);
+  }
+  
+  .code-input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .input-status-indicator {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    background: #4caf50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 10px;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  }
+  
+  /* Unlock button */
+  .unlock-button {
+    position: absolute;
+    bottom: 30px;
+    transform: translateX(-50%);
+    padding: 14px 30px;
+    background: #2363C7;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 2px;
+    z-index: 3;
+    box-shadow: 0 5px 20px rgba(35, 99, 199, 0.3);
+  }
+  
+  .unlock-button:hover:not(:disabled) {
+    background: #1b4da0;
+  }
+  
+  .unlock-button:active:not(:disabled) {
+    transform: translateX(-50%) translateY(2px);
+  }
+  
+  .unlock-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .unlocked-button {
+    background: #10b981;
+  }
+  
+  .unlocked-button:hover {
+    background: #059669;
+  }
+  
+  .button-icon {
+    font-size: 16px;
+  }
+  
+  /* Error message */
+  .error-message {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 3;
+    box-shadow: 0 5px 15px rgba(239, 68, 68, 0.3);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(239, 68, 68, 0.5);
+  }
+  
+  /* Success message */
+  .success-message {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(76, 175, 80, 0.9);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 3;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(76, 175, 80, 0.5);
+  }
+  
+  /* Footer styles */
+  .biometrics-footer {
+    background: #131720;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #2363C7;
+    font-family: monospace;
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .footer-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .status-label {
+    color: #9ca3af;
+  }
+  
+  .status-value {
+    font-weight: bold;
+  }
+  
+  .status-locked {
+    color: #ef4444;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+  }
+  
+  .status-unlocked {
+    color: #10b981;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  }
+  
+  .footer-info {
+    display: flex;
+    gap: 24px;
+  }
+  
+  .security-level {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .security-label {
+    color: #9ca3af;
+  }
+  
+  .security-value {
+    color: #fbbf24;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+  }
+  
+  .time-display {
+    color: #2363C7;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(35, 99, 199, 0.3);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+    .gear-mechanism {
+      width: 240px;
+      height: 240px;
+    }
+    
+    .central-gear {
+      font-size: 90px;
+    }
+    
+    .outer-gear {
+      font-size: 50px;
+    }
+    
+    .fingerprint-icon,
+    .unlock-icon {
+      font-size: 36px;
+    }
+    
+    .fingerprint-container {
+      width: 70px;
+      height: 70px;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .node-1 {
+      top: 10%;
+      left: 10%;
+    }
+    
+    .node-2 {
+      top: 20%;
+      right: 10%;
+    }
+    
+    .node-3 {
+      bottom: 40%;
+      left: 10%;
+    }
+    
+    .node-4 {
+      bottom: 30%;
+      right: 10%;
+    }
+    
+    .node-5 {
+      bottom: 10%;
+    }
+    
+    .unlock-button {
+      bottom: 30px;
+      padding: 12px 24px;
+    }
+    
+    .error-message,
+    .success-message {
+      bottom: 80px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .biometrics-header {
+      padding: 12px 16px;
+    }
+    
+    .header-title h1 {
+      font-size: 16px;
+    }
+    
+    .gear-mechanism {
+      width: 200px;
+      height: 200px;
+    }
+    
+    .central-gear {
+      font-size: 80px;
+    }
+    
+    .outer-gear {
+      font-size: 40px;
+    }
+    
+    .fingerprint-icon,
+    .unlock-icon {
+      font-size: 30px;
+    }
+    
+    .fingerprint-container {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .code-input {
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+    }
+    
+    .input-node {
+      padding: 12px;
+    }
+    
+    .biometrics-footer {
+      padding: 10px 16px;
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .biometrics-content {
+      width: 95%;
+      height: 95%;
+    }
+    
+    .header-title h1 {
+      font-size: 14px;
+    }
+    
+    .shield-icon {
+      font-size: 18px;
+    }
+    
+    .gear-mechanism {
+      width: 160px;
+      height: 160px;
+    }
+    
+    .central-gear {
+      font-size: 60px;
+    }
+    
+    .outer-gear {
+      font-size: 30px;
+    }
+    
+    .node-1 {
+      top: 5%;
+      left: 5%;
+    }
+    
+    .node-2 {
+      top: 10%;
+      right: 5%;
+    }
+    
+    .node-3 {
+      bottom: 50%;
+      left: 5%;
+    }
+    
+    .node-4 {
+      bottom: 40%;
+      right: 5%;
+    }
+    
+    .node-5 {
+      bottom: 5%;
+    }
+    
+    .code-input {
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+    }
+    
+    .unlock-button {
+      font-size: 12px;
+      padding: 10px 20px;
+    }
+    
+    .footer-info {
+      gap: 10px;
+    }
+  }
+  
+  /* Custom animations */
+  @keyframes floatAnimation {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes glowingEffect {
+    0% {
+      box-shadow: 0 0 5px rgba(35, 99, 199, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(35, 99, 199, 0.8);
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(35, 99, 199, 0.5);
+    }
+  }
+  
+  /* Data flow animation */
+  .data-flow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .data-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #2363C7;
+    border-radius: 50%;
+    opacity: 0;
+  }
+  
+  .data-particle-1 {
+    animation: dataFlow1 3s infinite linear;
+    animation-delay: 0s;
+  }
+  
+  .data-particle-2 {
+    animation: dataFlow2 3s infinite linear;
+    animation-delay: 0.5s;
+  }
+  
+  .data-particle-3 {
+    animation: dataFlow3 3s infinite linear;
+    animation-delay: 1s;
+  }
+  
+  .data-particle-4 {
+    animation: dataFlow4 3s infinite linear;
+    animation-delay: 1.5s;
+  }
+  
+  .data-particle-5 {
+    animation: dataFlow5 3s infinite linear;
+    animation-delay: 2s;
+  }
+  
+  @keyframes dataFlow1 {
+    0% {
+      top: 15%;
+      left: 20%;
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      top: 50%;
+      left: 50%;
+      opacity: 0;
+    }
+  }
+  
+  @keyframes dataFlow2 {
+    0% {
+      top: 25%;
+      right: 20%;
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      top: 50%;
+      right: 50%;
+      opacity: 0;
+    }
+  }
+  
+  @keyframes dataFlow3 {
+    0% {
+      bottom: 35%;
+      left: 15%;
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      bottom: 50%;
+      left: 50%;
+      opacity: 0;
+    }
+  }
+  
+  @keyframes dataFlow4 {
+    0% {
+      bottom: 35%;
+      right: 25%;
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      bottom: 50%;
+      right: 50%;
+      opacity: 0;
+    }
+  }
+  
+  @keyframes dataFlow5 {
+    0% {
+      bottom: 20%;
+      left: 50%;
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    80% {
+      opacity: 0.8;
+    }
+    100% {
+      bottom: 50%;
+      left: 50%;
+      opacity: 0;
+    }
+  }
+  
+  /* Processing indicator dots */
+  .processing-dots {
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+  }
+  
+  .processing-dot {
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+  }
+  
+  .processing-dot:nth-child(1) {
+    animation: dotPulse 1.5s infinite;
+    animation-delay: 0s;
+  }
+  
+  .processing-dot:nth-child(2) {
+    animation: dotPulse 1.5s infinite;
+    animation-delay: 0.2s;
+  }
+  
+  .processing-dot:nth-child(3) {
+    animation: dotPulse 1.5s infinite;
+    animation-delay: 0.4s;
+  }
+  
+  @keyframes dotPulse {
+    0%, 100% {
+      transform: scale(0.6);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Highlight pulse effect for elements */
+  .highlight-pulse {
+    animation: highlightPulse 2s infinite;
+  }
+  
+  @keyframes highlightPulse {
+    0%, 100% {
+      filter: brightness(1);
+    }
+    50% {
+      filter: brightness(1.3);
+    }
+  }
+  
+  /* Scan effect animation */
+  .scan-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #2363C7, transparent);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .scanning .scan-line {
+    animation: scanAnimation 2s infinite;
+  }
+  
+  @keyframes scanAnimation {
+    0% {
+      top: 0;
+      opacity: 0;
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      top: 100%;
+      opacity: 0;
+    }
+  }

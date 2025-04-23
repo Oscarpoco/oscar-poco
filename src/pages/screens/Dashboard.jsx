@@ -12,9 +12,12 @@ import Featured from "./Featured";
 import Testimonials from "./Testimonials";
 import Contacts from "./Contact";
 import Error404 from "./Error404";
+import Biometrics from "../popupps/screens/Biometrics";
 
 
-function Dashboard({ activeItem }) {
+function Dashboard({ activeItem, isBiometrics, onClose, isAuthenticated }) {
+
+
     const renderContent = () => {
         switch (activeItem) {
             case "Dashboard":
@@ -38,9 +41,17 @@ function Dashboard({ activeItem }) {
 
     return (
         <div className="Parent-dashboard">
+
             <div className="Child-dashboard">
+                
                 {renderContent()}
+
+            <>
+            {isBiometrics && <Biometrics onClose={onClose} />}
+            </>
+
             </div>
+
         </div>
     );
 }

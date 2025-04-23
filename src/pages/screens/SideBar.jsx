@@ -10,8 +10,9 @@ import { BiSolidMessageDetail } from "react-icons/bi";
 import { FaProjectDiagram, FaLaptopCode } from "react-icons/fa";
 import { BsAward } from "react-icons/bs";
 import { IoRocketOutline } from "react-icons/io5";
+import { CiLogin } from "react-icons/ci";
 
-function SideBar({ activeItem, setActiveItem }) {
+function SideBar({ activeItem, setActiveItem, isAuthenticated, setIsBiometrics }) {
     const [isAnimating, setIsAnimating] = useState(false);
 
     useEffect(() => {
@@ -31,53 +32,66 @@ function SideBar({ activeItem, setActiveItem }) {
             <div className="sidebar-content">
 
                 {/* ADD PROJECT BUTTON */}
-                <div className="add-project-button">
-                    <div className="add-icon-wrapper">
-                        <IoAddCircleOutline className="add-icon" />
+
+                {isAuthenticated ?
+
+                    <div className="add-project-button">
+                        <div className="add-icon-wrapper">
+                            <IoAddCircleOutline className="add-icon" />
+                        </div>
+                        <span>Add New Project</span>
                     </div>
-                    <span>Add New Project</span>
-                </div>
+                    :
+                    <div className="add-project-button" onClick={()=>setIsBiometrics(true)}>
+                        <div className="add-icon-wrapper">
+                            <CiLogin className="add-icon" />
+                        </div>
+                        <span>Login As Admin</span>
+                    </div>
+
+                }
+
 
                 {/* NAVIGATION LINKS */}
                 <div className="sidebar-navigation">
-                    <div className={`navigation-item ${activeItem === "Dashboard" ? "active" : ""}`} 
-                         onClick={() => handleNavClick("Dashboard")}>
+                    <div className={`navigation-item ${activeItem === "Dashboard" ? "active" : ""}`}
+                        onClick={() => handleNavClick("Dashboard")}>
                         <MdDashboard className="navigation-icon" />
                         <span>Dashboard</span>
                         {activeItem === "Dashboard" && <div className="active-indicator"></div>}
                     </div>
                     <div className={`navigation-item ${activeItem === "Skills" ? "active" : ""}`}
-                         onClick={() => handleNavClick("Skills")}>
+                        onClick={() => handleNavClick("Skills")}>
                         <MdCode className="navigation-icon" />
                         <span>Skills</span>
                         {activeItem === "Skills" && <div className="active-indicator"></div>}
                     </div>
                     <div className={`navigation-item ${activeItem === "Experience" ? "active" : ""}`}
-                         onClick={() => handleNavClick("Experience")}>
+                        onClick={() => handleNavClick("Experience")}>
                         <MdWork className="navigation-icon" />
                         <span>Experience</span>
                         {activeItem === "Experience" && <div className="active-indicator"></div>}
                     </div>
                     <div className={`navigation-item ${activeItem === "Education" ? "active" : ""}`}
-                         onClick={() => handleNavClick("Education")}>
+                        onClick={() => handleNavClick("Education")}>
                         <MdSchool className="navigation-icon" />
                         <span>Education</span>
                         {activeItem === "Education" && <div className="active-indicator"></div>}
                     </div>
                     <div className={`navigation-item ${activeItem === "Featured" ? "active" : ""}`}
-                         onClick={() => handleNavClick("Featured")}>
+                        onClick={() => handleNavClick("Featured")}>
                         <AiFillStar className="navigation-icon" />
                         <span>Featured</span>
                         {activeItem === "Featured" && <div className="active-indicator"></div>}
                     </div>
                     <div className={`navigation-item ${activeItem === "Testimonials" ? "active" : ""}`}
-                         onClick={() => handleNavClick("Testimonials")}>
+                        onClick={() => handleNavClick("Testimonials")}>
                         <BsAward className="navigation-icon" />
                         <span>Testimonials</span>
                         {activeItem === "Testimonials" && <div className="active-indicator"></div>}
                     </div>
                     <div className={`navigation-item ${activeItem === "Contact" ? "active" : ""}`}
-                         onClick={() => handleNavClick("Contact")}>
+                        onClick={() => handleNavClick("Contact")}>
                         <BiSolidMessageDetail className="navigation-icon" />
                         <span>Contact</span>
                         {activeItem === "Contact" && <div className="active-indicator"></div>}
@@ -94,7 +108,7 @@ function SideBar({ activeItem, setActiveItem }) {
                         <div className="stats-info">
                             <span className="stats-label">CURRENT</span>
                             <div className="stats-progress-bar">
-                                <div className={`stats-progress-fill ${isAnimating ? "animate" : ""}`} style={{width: "40%"}}></div>
+                                <div className={`stats-progress-fill ${isAnimating ? "animate" : ""}`} style={{ width: "40%" }}></div>
                             </div>
                             <div className="stats-details">
                                 <span className="stats-text">5 Active Projects</span>
@@ -109,7 +123,7 @@ function SideBar({ activeItem, setActiveItem }) {
                         <div className="stats-info">
                             <span className="stats-label">PORTFOLIO</span>
                             <div className="stats-progress-bar">
-                                <div className={`stats-progress-fill projects-progress ${isAnimating ? "animate" : ""}`} style={{width: "15%"}}></div>
+                                <div className={`stats-progress-fill projects-progress ${isAnimating ? "animate" : ""}`} style={{ width: "15%" }}></div>
                             </div>
                             <div className="stats-details">
                                 <span className="stats-text">15 Showcased Works</span>

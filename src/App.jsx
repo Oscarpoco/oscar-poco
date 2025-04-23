@@ -19,22 +19,53 @@ function App() {
   // PROFILE STATE
   const [isProfile, setIsProfile] = useState(false);
 
+  // AUTH
+  const [isAuthenticated, setIsAthenticated] = useState(false);
+
+  // LOGIN BIOMETRICS
+  const [isBiometrics, setIsBiometrics] = useState(false)
+
   return (
     <div className='Parent'>
       <div className='top'>
-        <NavigationBar onOpen={()=>setIsProfile(true)}/>
+        <NavigationBar 
+        onOpen={()=>setIsProfile(true)}
+        isAuthenticated={isAuthenticated}
+        />
       </div>
 
       <div className='bottom'>
-        <SideBar activeItem={activeItem} setActiveItem={setActiveItem} />
-        <Dashboard activeItem={activeItem} />
+
+        {/* SIDEBAR */}
+        <SideBar 
+        activeItem={activeItem} 
+        setActiveItem={setActiveItem} 
+        isAuthenticated={isAuthenticated}
+        setIsBiometrics={setIsBiometrics}
+        />
+
+        {/* DASHBOARD */}
+        <Dashboard 
+        activeItem={activeItem}
+        isAuthenticated={isAuthenticated} 
+        isBiometrics={isBiometrics}
+        onClose={()=>setIsBiometrics(false)}
+        />
+
       </div>
 
       {/* POPUPPS */}
 
-      {isProfile && (<Profile onClose={()=>setIsProfile(false)}/>)}
+      {isProfile && 
+      (
+      <Profile 
+      onClose={()=>setIsProfile(false)} 
+      isAuthenticated={isAuthenticated}
+      />
+      )}
 
       {/* ENDS */}
+
     </div>
   );
 }
