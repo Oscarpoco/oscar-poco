@@ -1,0 +1,276 @@
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+
+// STYLINGS
+import '../styles/Profile.css';
+import oscar from '../../../assets/oscar.jfif'
+
+// Icons
+import { FaTimes, FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaDownload, FaMapMarkerAlt } from "react-icons/fa";
+
+function Profile({ onClose }) {
+  const [activeTab, setActiveTab] = useState("about");
+  
+  // Skills data
+  const skills = [
+    { name: "React", level: 90 },
+    { name: "JavaScript", level: 85 },
+    { name: "CSS", level: 80 },
+    { name: "Node.js", level: 75 },
+    { name: "UI/UX", level: 70 }
+  ];
+  
+  // Experience data
+  const experience = [
+    {
+      company: "TechCorp Inc.",
+      position: "Senior Frontend Developer",
+      period: "2022 - Present",
+      description: "Led development of multiple React-based applications"
+    },
+    {
+      company: "WebSolutions",
+      position: "Frontend Developer",
+      period: "2019 - 2022",
+      description: "Developed responsive websites and web applications"
+    }
+  ];
+  
+  // Education data
+  const education = [
+    {
+      institution: "Tech University",
+      degree: "Master of Computer Science",
+      period: "2017 - 2019"
+    },
+    {
+      institution: "State College",
+      degree: "Bachelor of Science in Web Development",
+      period: "2013 - 2017"
+    }
+  ];
+  
+  // Container animation
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        duration: 0.5,
+        when: "beforeChildren",
+        staggerChildren: 0.1
+      }
+    }
+  };
+  
+  // Child animation
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
+  };
+
+  return (
+    <motion.div 
+      className="profile-parent"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="profile-components">
+        <div className="Profile-header">
+          <motion.button 
+            className="close-button"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={onClose}
+          >
+            <FaTimes size={20} />
+          </motion.button>
+        </div>
+        
+        <motion.div 
+          className="Profile-info"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div className="Profile-avatar" variants={itemVariants}>
+            <img src={oscar} alt="Oscar Poco" />
+          </motion.div>
+          
+          <motion.h1 variants={itemVariants}>Oscar Kyle Poco</motion.h1>
+          <motion.h2 variants={itemVariants}>Frontend Developer</motion.h2>
+          
+          <motion.div className="Profile-location" variants={itemVariants}>
+          <FaMapMarkerAlt size={16} />
+            <span>Johannesburg, RSA</span>
+          </motion.div>
+          
+          <motion.div className="contact-buttons" variants={itemVariants}>
+            <motion.a 
+              href="mailto:alex@example.com" 
+              className="Contact-btn"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+               <FaEnvelope size={16} />
+            </motion.a>
+            <motion.a 
+              href="tel:+11234567890" 
+              className="Contact-btn"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+             <FaPhone size={16} />
+            </motion.a>
+            <motion.a 
+              href="https://github.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="Contact-btn"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+               <FaGithub size={16} />
+            </motion.a>
+            <motion.a 
+              href="https://linkedin.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="Contact-btn"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaLinkedin size={16} />
+            </motion.a>
+          </motion.div>
+          
+          <motion.button 
+            className="download-cv"
+            variants={itemVariants}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FaDownload size={16} />
+            <span>Download CV</span>
+          </motion.button>
+        </motion.div>
+        
+        <div className="Profile-tabs">
+          <motion.button 
+            className={`tab-btn ${activeTab === "about" ? "active" : ""}`}
+            onClick={() => setActiveTab("about")}
+            whileHover={{ y: -2 }}
+            whileTap={{ y: 1 }}
+          >
+            About
+          </motion.button>
+          <motion.button 
+            className={`tab-btn ${activeTab === "skills" ? "active" : ""}`}
+            onClick={() => setActiveTab("skills")}
+            whileHover={{ y: -2 }}
+            whileTap={{ y: 1 }}
+          >
+            Skills
+          </motion.button>
+          <motion.button 
+            className={`tab-btn ${activeTab === "experience" ? "active" : ""}`}
+            onClick={() => setActiveTab("experience")}
+            whileHover={{ y: -2 }}
+            whileTap={{ y: 1 }}
+          >
+            Experience
+          </motion.button>
+        </div>
+        
+        <div className="tab-content">
+          {activeTab === "about" && (
+            <motion.div 
+              className="about-content"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3>About Me</h3>
+              <p>
+                Passionate frontend developer with over 5 years of experience building 
+                responsive and interactive web applications. Specializing in React, 
+                JavaScript, and modern CSS frameworks.
+              </p>
+              
+              <h3>Education</h3>
+              {education.map((edu, index) => (
+                <motion.div 
+                  key={index} 
+                  className="education-item"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <h4>{edu.degree}</h4>
+                  <p>{edu.institution}</p>
+                  <span>{edu.period}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+          
+          {activeTab === "skills" && (
+            <motion.div 
+              className="skills-content"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3>Technical Skills</h3>
+              {skills.map((skill, index) => (
+                <div key={index} className="skill-item">
+                  <div className="skill-info">
+                    <span>{skill.name}</span>
+                    <span>{skill.level}%</span>
+                  </div>
+                  <div className="skill-bar">
+                    <motion.div 
+                      className="skill-progress"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${skill.level}%` }}
+                      transition={{ duration: 1, delay: index * 0.2 }}
+                    ></motion.div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          )}
+          
+          {activeTab === "experience" && (
+            <motion.div 
+              className="experience-content"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3>Work Experience</h3>
+              {experience.map((exp, index) => (
+                <motion.div 
+                  key={index} 
+                  className="experience-item"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <div className="timeline-dot"></div>
+                  <h4>{exp.position}</h4>
+                  <p>{exp.company}</p>
+                  <span>{exp.period}</span>
+                  <p>{exp.description}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+export default Profile;

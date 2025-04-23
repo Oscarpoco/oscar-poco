@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 // STYLING
 import '../styles/About.css';
 import oscar from '../../assets/oscar.jfif'
+import qrcode from '../../assets/qrcode.jfif'
 
 // ICONS
 import { FaFolderOpen, FaCalendarAlt, FaSmile, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
@@ -230,7 +231,7 @@ function About() {
                             <h1 className="profile-name">Oscar Kyle Poco</h1>
                             <span className="status-badge">Available for hire</span>
                         </div>
-                        <h2 className="profile-title">Senior React Developer</h2>
+                        <h2 className="profile-title">Junior React Developer</h2>
                         <p className="profile-description">
                             Passionate developer with a knack for creating elegant, responsive and user-friendly 
                             web applications. Specialized in React.js ecosystem with 5+ years of professional 
@@ -241,34 +242,44 @@ function About() {
                             <span className="skill-tag">TypeScript</span>
                             <span className="skill-tag">Node.js</span>
                             <span className="skill-tag">Redux</span>
-                            <span className="skill-tag">GraphQL</span>
+                            <span className="skill-tag">React Native</span>
                             <span className="skill-tag">UI/UX</span>
                         </div>
                         <div className="profile-stats">
                             <motion.div 
-                                className="stat-item"
+                                className="Stat-item"
                                 whileHover={{ y: -5, scale: 1.05 }}
                             >
                                 <span className="stat-value">100%</span>
                                 <span className="stat-label">Client Satisfaction</span>
                             </motion.div>
                             <motion.div 
-                                className="stat-item"
+                                className="Stat-item"
                                 whileHover={{ y: -5, scale: 1.05 }}
                             >
-                                <span className="stat-value">24+</span>
+                                <span className="stat-value">3+</span>
                                 <span className="stat-label">Projects Completed</span>
                             </motion.div>
                             <motion.div 
-                                className="stat-item"
+                                className="Stat-item"
                                 whileHover={{ y: -5, scale: 1.05 }}
                             >
-                                <span className="stat-value">5+</span>
+                                <span className="stat-value">1+</span>
                                 <span className="stat-label">Years of Experience</span>
                             </motion.div>
                         </div>
                     </motion.div>
                 </div>
+
+                <motion.div 
+                className="qrcode"
+                variants={itemVariants}
+                >
+                    <img src={qrcode} alt="qrcode" className="qrcode-image"/> 
+                    <motion.h3 className="scan-tag">SCAN TO DOWNLOAD RESUME</motion.h3>
+
+                </motion.div>
+
             </motion.div>
 
             {/* QUICK ACCESS SECTION */}

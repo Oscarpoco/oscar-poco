@@ -185,12 +185,14 @@ body {
 .profile-section {
     margin-bottom: 50px;
     background-color: var(--card-bg);
-    border-radius: var(--border-radius-lg);
     padding: 50px 30px;
-    box-shadow: var(--card-shadow);
     transition: all var(--transition-speed) ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5em;
 }
 
 .profile-section::before {
@@ -407,15 +409,17 @@ body {
     margin-top: 10px;
 }
 
-.stat-item {
-    display: flex;
+.Stat-item {
+  display: flex;
     flex-direction: column;
-    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
     padding: 15px 25px;
     background-color: var(--background);
     border-radius: var(--border-radius-md);
     transition: all var(--transition-speed) ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+    border: solid 1px rgba(0, 0, 0, 0.1);
 }
 
 .stat-value {
@@ -427,6 +431,28 @@ body {
 .stat-label {
     font-size: 14px;
     color: var(--text-light);
+}
+
+.qrcode
+{
+    width: 500px;
+    height: 300px;
+    background: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.qrcode-image
+{
+    width: 100%;
+    object-fit: cover;
+}
+
+.scan-tag
+{
+    color: #333;
 }
 
 /* QUICK ACCESS SECTION */

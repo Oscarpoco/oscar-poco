@@ -9,7 +9,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { AiOutlineStar } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
 
-function NavigationBar() {
+function NavigationBar({onOpen}) {
     const [darkMode, setDarkMode] = useState(false);
     const [notifications, setNotifications] = useState(3);
     const [searchFocused, setSearchFocused] = useState(false);
@@ -71,7 +71,7 @@ function NavigationBar() {
                     <p className="role">React Developer</p>
                 </div>
                 
-                <div className="abbreviation">
+                <div className="abbreviation" onClick={onOpen}>
                     <p className="abbreviation-name">O</p>
                 </div>
                 
