@@ -11,7 +11,7 @@ import { MdDownload, MdInfo, MdOutlineLightMode, MdOutlineDarkMode, MdAdd, MdRem
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 import { motion, AnimatePresence } from 'framer-motion';
 
-function Featured() {
+function Featured({ isAuthenticated }) {
     const [darkMode, setDarkMode] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeTab, setActiveTab] = useState('featured');
@@ -224,15 +224,20 @@ function Featured() {
     const renderProjectButtons = (project) => {
         if (activeTab === 'featured') {
             return (
-                <motion.button
-                    className="project-action-button remove-featured"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => toggleFeature(project.id, true)}
-                >
-                    <MdRemove className="button-icon" />
-                    <span>Remove from Featured</span>
-                </motion.button>
+
+                <>
+                    {isAuthenticated && (
+                        <motion.button
+                            className="project-action-button remove-featured"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => toggleFeature(project.id, true)}
+                        >
+                            <MdRemove className="button-icon" />
+                            <span>Remove from Featured</span>
+                        </motion.button>
+                    )}
+                </>
             );
         } else {
             return (
@@ -245,16 +250,25 @@ function Featured() {
                         <span>Featured Project</span>
                     </motion.button>
                 ) : (
-                    <motion.button
-                        className="project-action-button add-featured"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => toggleFeature(project.id, false)}
-                    >
-                        <MdAdd className="button-icon" />
-                        <span>Add to Featured</span>
-                    </motion.button>
+
+                    <>
+                        {isAuthenticated && (
+
+                            <motion.button
+                                className="project-action-button add-featured"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => toggleFeature(project.id, false)}
+                            >
+                                <MdAdd className="button-icon" />
+                                <span>Add to Featured</span>
+                            </motion.button>
+
+                        )}
+                    </>
+
                 )
+
             );
         }
     };

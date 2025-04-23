@@ -29,7 +29,7 @@ function Dashboard({ activeItem, isBiometrics, onClose, isAuthenticated }) {
             case "Education":
                 return <Education/>;
             case "Featured":
-                return <Featured/>;
+                return <Featured isAuthenticated={isAuthenticated}/>;
             case "Testimonials":
                 return <Testimonials/>;
             case "Contact":

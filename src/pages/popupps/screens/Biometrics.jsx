@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaLock, FaUnlockAlt, FaCog, FaFingerprint, FaShieldAlt, FaCircleNotch, FaTimes, FaCheck } from "react-icons/fa";
 import "../styles/Biometrics.css";
+import LoginForm from "./Login";
 
 function Biometrics({ onClose }) {
   const [inputs, setInputs] = useState(["", "", "", "", ""]);
@@ -10,6 +11,7 @@ function Biometrics({ onClose }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false);
   
   // Refs for input focus management
   const inputRefs = useRef([]);
@@ -28,7 +30,6 @@ function Biometrics({ onClose }) {
   
   // Handle input change and auto-focus to next input
   const handleInputChange = (index, value) => {
-    // Only allow numbers
     if (value && !/^\d+$/.test(value)) return;
     
     const newInputs = [...inputs];
@@ -60,6 +61,7 @@ function Biometrics({ onClose }) {
       if (isCorrect) {
         setIsUnlocked(true);
         setShowSuccessMessage(true);
+        setShowLoginForm(true);
         setTimeout(() => {
           setShowSuccessMessage(false);
         }, 3000);
@@ -99,6 +101,13 @@ function Biometrics({ onClose }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
+
+    {showLoginForm ? 
+
+    <LoginForm onClose={()=>setShowLoginForm(false)}/>
+
+    :
+
       <motion.div 
         className="biometrics-content"
         initial={{ scale: 0.9, opacity: 0 }}
@@ -411,6 +420,8 @@ function Biometrics({ onClose }) {
           </div>
         </motion.div>
       </motion.div>
+    }
+
     </motion.div>
   );
 }

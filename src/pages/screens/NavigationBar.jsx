@@ -9,7 +9,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { AiOutlineStar } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
 
-function NavigationBar({onOpen}) {
+function NavigationBar({onOpen, isAuthenticated}) {
     const [darkMode, setDarkMode] = useState(false);
     const [notifications, setNotifications] = useState(3);
     const [searchFocused, setSearchFocused] = useState(false);
@@ -39,6 +39,8 @@ function NavigationBar({onOpen}) {
             </div>
             
             {/* SEARCH BAR */}
+
+            {isAuthenticated && (
             <div className={`Portfolio-search ${searchFocused ? 'focused' : ''}`}>
                 <CiSearch className="search-icon" />
                 <input 
@@ -49,6 +51,8 @@ function NavigationBar({onOpen}) {
                     onBlur={() => setSearchFocused(false)}
                 />
             </div>
+
+            )}
             
             {/* PORTFOLIO USER */}
             <div className="Portfolio-user">
