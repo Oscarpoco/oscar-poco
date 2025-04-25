@@ -257,15 +257,20 @@
   @media (max-width: 992px) {
     .certificates-grid {
       grid-template-columns: repeat(2, 1fr);
-      max-width: 90%;
+      max-width: 100%;
     }
     
     .education-cards {
-      max-width: 90%;
+      max-width: 100%;
     }
   }
   
   @media (max-width: 768px) {
+
+    .education-section {
+      padding: 30px 10px;
+    }
+
     .education-card {
       grid-template-columns: 1fr;
     }
@@ -280,6 +285,10 @@
     .education-meta {
       flex-direction: column;
       gap: 12px;
+    }
+
+    .certificates-section {
+      padding: 40px 10px 60px;
     }
   }
   
