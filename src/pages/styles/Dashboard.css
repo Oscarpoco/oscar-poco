@@ -1,13 +1,11 @@
-.Parent-dashboard
-{
+.Parent-dashboard {
     width: 85%;
     height: 100%;
     background: #fff;
     padding: 0 16px;
 }
 
-.Child-dashboard
-{
+.Child-dashboard {
     width: 100%;
     height: 100%;
     background: #fff;
@@ -17,4 +15,32 @@
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     position: relative;
+}
+
+
+/* RESPONSIVE STYLES */
+/* @media (max-width: 768px) {
+    .Portfolio-search {
+      width: 45%;
+    }
+  
+    .user-info {
+      display: none;
+    }
+  } */
+
+@media (max-width: 576px) {
+    .Parent-dashboard {
+        padding: 0;
+        width: 80%;
+    }
+
+    .Child-dashboard {
+        border: none;
+        border-bottom: none;
+        padding: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
 }

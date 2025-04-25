@@ -57,43 +57,43 @@ function SideBar({ activeItem, setActiveItem, isAuthenticated, setIsBiometrics }
                     <div className={`navigation-item ${activeItem === "Dashboard" ? "active" : ""}`}
                         onClick={() => handleNavClick("Dashboard")}>
                         <MdDashboard className="navigation-icon" />
-                        <span>Dashboard</span>
+                        <span className="mobileSideBar">Dashboard</span>
                         {activeItem === "Dashboard" && <div className="active-indicator"></div>}
                     </div>
                     <div className={`navigation-item ${activeItem === "Skills" ? "active" : ""}`}
                         onClick={() => handleNavClick("Skills")}>
                         <MdCode className="navigation-icon" />
-                        <span>Skills</span>
+                        <span className="mobileSideBar">Skills</span>
                         {activeItem === "Skills" && <div className="active-indicator"></div>}
                     </div>
                     <div className={`navigation-item ${activeItem === "Experience" ? "active" : ""}`}
                         onClick={() => handleNavClick("Experience")}>
                         <MdWork className="navigation-icon" />
-                        <span>Experience</span>
+                        <span className="mobileSideBar">Experience</span>
                         {activeItem === "Experience" && <div className="active-indicator"></div>}
                     </div>
                     <div className={`navigation-item ${activeItem === "Education" ? "active" : ""}`}
                         onClick={() => handleNavClick("Education")}>
                         <MdSchool className="navigation-icon" />
-                        <span>Education</span>
+                        <span className="mobileSideBar">Education</span>
                         {activeItem === "Education" && <div className="active-indicator"></div>}
                     </div>
                     <div className={`navigation-item ${activeItem === "Featured" ? "active" : ""}`}
                         onClick={() => handleNavClick("Featured")}>
                         <AiFillStar className="navigation-icon" />
-                        <span>Featured</span>
+                        <span className="mobileSideBar">Featured</span>
                         {activeItem === "Featured" && <div className="active-indicator"></div>}
                     </div>
                     <div className={`navigation-item ${activeItem === "Testimonials" ? "active" : ""}`}
                         onClick={() => handleNavClick("Testimonials")}>
                         <BsAward className="navigation-icon" />
-                        <span>Testimonials</span>
+                        <span className="mobileSideBar">Testimonials</span>
                         {activeItem === "Testimonials" && <div className="active-indicator"></div>}
                     </div>
                     <div className={`navigation-item ${activeItem === "Contact" ? "active" : ""}`}
                         onClick={() => handleNavClick("Contact")}>
                         <BiSolidMessageDetail className="navigation-icon" />
-                        <span>Contact</span>
+                        <span className="mobileSideBar">Contact</span>
                         {activeItem === "Contact" && <div className="active-indicator"></div>}
                     </div>
                 </div>
@@ -132,7 +132,7 @@ function SideBar({ activeItem, setActiveItem, isAuthenticated, setIsBiometrics }
                         </div>
                     </div>
                     <div className="view-portfolio-button">
-                        <span>View Full Portfolio</span>
+                        <span className="mobileSideBar">View Full Portfolio</span>
                         <div className="button-arrow-container">
                             <IoRocketOutline className="button-icon" />
                         </div>
