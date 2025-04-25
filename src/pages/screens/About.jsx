@@ -6,10 +6,13 @@ import oscar from '../../assets/oscar.jfif'
 import qrcode from '../../assets/qrcode.jfif'
 
 // ICONS
-import { FaFolderOpen, FaCalendarAlt, FaSmile, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { MdDownload, MdInfo, MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md';
 import { IoIosArrowForward } from 'react-icons/io';
-import { motion } from 'framer-motion'; // Animation library
+import { motion } from 'framer-motion'; 
+
+// DATABASE
+import { portfolioStats, featuredProjects } from "../Database/AboutData";
 
 function About() {
     const [activeTab, setActiveTab] = useState('featured');
@@ -36,79 +39,6 @@ function About() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
     
-    // Sample data for the portfolio stats
-    const portfolioStats = [
-        {
-            id: 1,
-            title: "PROJECTS",
-            icon: <FaFolderOpen className="folder-icon" />,
-            count: 24,
-            color: "#2363C7", // Blue
-            gradient: "linear-gradient(135deg, #2363C7, #4285F4)",
-            users: [
-                "https://i.pravatar.cc/150?img=1",
-                "https://i.pravatar.cc/150?img=2",
-                "https://i.pravatar.cc/150?img=3",
-                "https://i.pravatar.cc/150?img=4"
-            ]
-        },
-        {
-            id: 2,
-            title: "EXPERIENCE",
-            icon: <FaCalendarAlt className="folder-icon" />,
-            count: 5,
-            subtitle: "Years",
-            color: "#1FA463", // Green
-            gradient: "linear-gradient(135deg, #1FA463, #27AE60)",
-            users: [
-                "https://i.pravatar.cc/150?img=5",
-                "https://i.pravatar.cc/150?img=6",
-                "https://i.pravatar.cc/150?img=7"
-            ]
-        },
-        {
-            id: 3,
-            title: "HAPPY CLIENTS",
-            icon: <FaSmile className="folder-icon" />,
-            count: 18,
-            color: "#E74C3C", // Red
-            gradient: "linear-gradient(135deg, #E74C3C, #FF7675)",
-            users: [
-                "https://i.pravatar.cc/150?img=8",
-                "https://i.pravatar.cc/150?img=9",
-                "https://i.pravatar.cc/150?img=10",
-                "https://i.pravatar.cc/150?img=11"
-            ]
-        }
-    ];
-
-    // Sample projects data
-    const featuredProjects = [
-        {
-            id: 1,
-            name: "E-Commerce Platform",
-            category: "Web Development",
-            icon: "https://img.icons8.com/fluency/48/000000/online-store.png",
-            lastModified: "Apr 12, 2025",
-            type: "React.js"
-        },
-        {
-            id: 2,
-            name: "Task Management App",
-            category: "Mobile App",
-            icon: "https://img.icons8.com/fluency/48/000000/todo-list.png",
-            lastModified: "Mar 28, 2025",
-            type: "React Native"
-        },
-        {
-            id: 3,
-            name: "Portfolio Dashboard",
-            category: "UI/UX Design",
-            icon: "https://img.icons8.com/fluency/48/000000/web-design.png",
-            lastModified: "Apr 18, 2025",
-            type: "React.js"
-        }
-    ];
 
     // Animation variants
     const containerVariants = {
@@ -234,7 +164,7 @@ function About() {
                         <h2 className="profile-title">Junior React Developer</h2>
                         <p className="profile-description">
                             Passionate developer with a knack for creating elegant, responsive and user-friendly 
-                            web applications. Specialized in React.js ecosystem with 5+ years of professional 
+                            web applications. Specialized in React.js ecosystem with 1+ years of professional 
                             experience building scalable solutions for various industries.
                         </p>
                         <div className="skills-container">
