@@ -141,7 +141,7 @@ function Skills() {
                     <div className="breadcrumb">
                         <span>Dashboard</span>
                         <IoIosArrowForward className="breadcrumb-icon" />
-                        <span className="current-page">Professional Skills</span>
+                        <span className="current-page">Skills</span>
                     </div>
                 </motion.div>
                 
@@ -153,11 +153,11 @@ function Skills() {
                 >
                     <button className="action-button contact-btn">
                         <MdInfo className="action-icon" />
-                        <span>Contact Info</span>
+                        <span className="mobileSideBar">Contact Info</span>
                     </button>
                     <button className="action-button download-btn primary">
                         <MdDownload className="action-icon" />
-                        <span>Download CV</span>
+                        <span className="mobileSideBar">Download CV</span>
                     </button>
                 </motion.div>
             </div>

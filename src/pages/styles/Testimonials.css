@@ -117,7 +117,7 @@
     font-size: 1.1rem;
     line-height: 1.6;
     font-style: italic;
-    color: var(--text-color);
+    color: #333;
   }
   
   /* Testimonial Navigation Dots */
@@ -250,6 +250,16 @@
   
   /* Responsive Styles */
   @media screen and (max-width: 768px) {
+
+    #testimonials-wrapper {
+      overflow-y: auto;
+    }
+
+    .testimonials-section {
+      padding: 0px 10px;
+      padding-top: 30px;
+    }
+
     .testimonials-header {
       flex-direction: column;
       align-items: flex-start;
@@ -265,11 +275,40 @@
     .testimonial-info {
       margin-left: 0;
       margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
     }
   
     .testimonial-avatar {
       width: 70px;
       height: 70px;
+    }
+
+    .testimonial-rating {
+      font-size: 1.3rem;
+      text-align: center;
+    }
+    
+    .testimonial-content {
+      text-align: center;
+    }
+
+    .social-links {
+      margin-bottom: 2rem;
+    }
+
+    .testimonial-cta {
+      margin: 1rem 10px 2rem;
+      padding: 2rem;
+    }
+
+    .testimonial-cta h3 {
+      font-size: 1.5rem;
+    }
+    
+    .testimonial-cta p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
     }
   }
   

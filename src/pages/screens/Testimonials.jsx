@@ -117,7 +117,7 @@ function Testimonials() {
                         whileTap={{ y: 0, boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)" }}
                     >
                         <MdInfo className="action-icon" />
-                        <span>Contact Info</span>
+                        <span className="mobileSideBar">Contact Info</span>
                     </motion.button>
                     <motion.button 
                         className="action-button download-btn primary"
@@ -125,7 +125,7 @@ function Testimonials() {
                         whileTap={{ y: 0, boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)" }}
                     >
                         <MdDownload className="action-icon" />
-                        <span>Download CV</span>
+                        <span className="mobileSideBar">Download CV</span>
                     </motion.button>
                 </motion.div>
             </div>

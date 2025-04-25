@@ -153,7 +153,7 @@ function Contacts() {
                     </div>
                 </motion.div>
 
-                <motion.div
+                <motion.div 
                     className="header-actions"
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -161,11 +161,11 @@ function Contacts() {
                 >
                     <button className="action-button contact-btn">
                         <MdInfo className="action-icon" />
-                        <span>Contact Info</span>
+                        <span className="mobileSideBar">Contact Info</span>
                     </button>
                     <button className="action-button download-btn primary">
                         <MdDownload className="action-icon" />
-                        <span>Download CV</span>
+                        <span className="mobileSideBar">Download CV</span>
                     </button>
                 </motion.div>
             </div>
