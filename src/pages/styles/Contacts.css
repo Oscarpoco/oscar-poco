@@ -381,20 +381,7 @@
     .contact-info {
       border-radius: 24px 24px 0 0;
     }
-    
-    .about-header {
-      flex-direction: column;
-      text-align: center;
-      gap: 15px;
-    }
-    
-    .header-left h1 {
-      margin-bottom: 10px;
-    }
-    
-    .breadcrumb {
-      justify-content: center;
-    }
+
   }
   
   @media (max-width: 480px) {

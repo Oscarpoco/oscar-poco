@@ -336,12 +336,16 @@
 }
 
 @media (max-width: 576px) {
+    .Parent-nav {
+        padding: 1em 10px;
+    }
+
     .Portfolio-search {
         width: 40%;
     }
     
     .Portfolio-h2 {
-        display: none;
+        font-size: 1.2em;
     }
     
     .Search-bar::placeholder {

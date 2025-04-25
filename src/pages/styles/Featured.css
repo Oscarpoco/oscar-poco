@@ -371,10 +371,10 @@
       gap: 1rem;
     }
     
-    .header-actions {
+    /* .header-actions {
       width: 100%;
       justify-content: space-between;
-    }
+    } */
     
     .project-tabs {
       flex-wrap: wrap;

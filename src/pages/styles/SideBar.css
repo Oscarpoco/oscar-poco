@@ -320,7 +320,7 @@
 
 @media (max-width: 576px) {
     .Parent-sidebar {
-        border-top-right-radius: 15px;
+        border-top-right-radius: 0px;
         overflow-x: hidden;
         position: relative;
         width: 20%;
@@ -366,6 +366,7 @@
 
     /* PORTFOLIO STATS */
     .portfolio-stats {
+        padding: 0 3px;
         padding-top: 10px;
     }
 
@@ -374,18 +375,12 @@
     }
 
     .stats-item {
-        align-items: center;
         justify-content: flex-start;
         flex-direction: column;
         gap: 5px;
         padding: 10px 0px;
 
     }
-
-    .stats-label {
-        text-align: center;
-    }
-
 
     .stats-details {
         justify-content: flex-start;
@@ -395,7 +390,11 @@
     .stats-text {
         font-size: 10px;
         opacity: 0.8;
-        text-align: center;
+    }
+
+    .stats-percentage {
+       text-align: left;
+       width: 100%;
     }
 
 
@@ -403,6 +402,10 @@
         display: none;
     }
 
+    .stats-label
+    {
+        font-size: 10px;
+    }
 
 
 
