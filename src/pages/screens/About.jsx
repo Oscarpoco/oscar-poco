@@ -181,21 +181,21 @@ function About() {
                                 whileHover={{ y: -5, scale: 1.05 }}
                             >
                                 <span className="stat-value">100%</span>
-                                <span className="stat-label">Client Satisfaction</span>
+                                <span className="Stat-label">Client Satisfaction</span>
                             </motion.div>
                             <motion.div 
                                 className="Stat-item"
                                 whileHover={{ y: -5, scale: 1.05 }}
                             >
                                 <span className="stat-value">3+</span>
-                                <span className="stat-label">Projects Completed</span>
+                                <span className="Stat-label">Projects Completed</span>
                             </motion.div>
                             <motion.div 
                                 className="Stat-item"
                                 whileHover={{ y: -5, scale: 1.05 }}
                             >
                                 <span className="stat-value">1+</span>
-                                <span className="stat-label">Years of Experience</span>
+                                <span className="Stat-label">Years of Experience</span>
                             </motion.div>
                         </div>
                     </motion.div>
@@ -221,13 +221,6 @@ function About() {
             >
                 <div className="section-header">
                     <h2>PORTFOLIO OVERVIEW</h2>
-                    <motion.button 
-                        className="more-btn"
-                        whileHover={{ x: 5 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        View All <IoIosArrowForward className="arrow-icon" />
-                    </motion.button>
                 </div>
 
                 <div className="folders-container">
@@ -328,7 +321,7 @@ function About() {
                         <div className="table-column name-column">NAME</div>
                         <div className="table-column owner-column">CATEGORY</div>
                         <div className="table-column modified-column">LAST MODIFIED</div>
-                        <div className="table-column size-column">TYPE</div>
+                        <div className="table-column size-column" id="type-column">TYPE</div>
                         <div className="table-column actions-column"></div>
                     </div>
                     
