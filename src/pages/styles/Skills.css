@@ -138,8 +138,10 @@
   }
   
   @media (max-width: 576px) {
+
     .skills-card-container {
       grid-template-columns: 1fr;
+      padding: 30px 10px;
     }
   }
   

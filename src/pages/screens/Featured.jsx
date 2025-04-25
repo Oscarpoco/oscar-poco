@@ -216,7 +216,7 @@ function Featured({ isAuthenticated }) {
                         animate={activeTab === 'featured' ? "active" : "inactive"}
                     >
                         <FaStar className="tab-icon" />
-                        <span>Featured</span>
+                        <span className="mobileSideBar">Featured</span>
                     </motion.div>
                     <motion.div
                         className={`tab ${activeTab === 'current' ? 'active' : ''}`}
@@ -226,7 +226,7 @@ function Featured({ isAuthenticated }) {
                         animate={activeTab === 'current' ? "active" : "inactive"}
                     >
                         <FaFolderOpen className="tab-icon" />
-                        <span>Current</span>
+                        <span className="mobileSideBar">Current</span>
                     </motion.div>
                     <motion.div
                         className={`tab ${activeTab === 'completed' ? 'active' : ''}`}
@@ -236,7 +236,7 @@ function Featured({ isAuthenticated }) {
                         animate={activeTab === 'completed' ? "active" : "inactive"}
                     >
                         <FaCalendarAlt className="tab-icon" />
-                        <span>Completed</span>
+                        <span className="mobileSideBar">Completed</span>
                     </motion.div>
                 </div>
 
