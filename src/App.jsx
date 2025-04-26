@@ -25,12 +25,25 @@ function App() {
   // LOGIN BIOMETRICS
   const [isBiometrics, setIsBiometrics] = useState(false)
 
+  // DARK MODE
+
+  const [darkMode, setDarkMode] = useState(false);
+      
+      const toggleTheme = () => {
+          setDarkMode(!darkMode);
+          document.body.classList.toggle('dark-theme');
+      };
+
+
+
   return (
     <div className='Parent'>
       <div className='top'>
         <NavigationBar 
         onOpen={()=>setIsProfile(true)}
         isAuthenticated={isAuthenticated}
+        toggleTheme={toggleTheme}
+        darkMode={darkMode}
         />
       </div>
 
@@ -50,6 +63,8 @@ function App() {
         isAuthenticated={isAuthenticated} 
         isBiometrics={isBiometrics}
         onClose={()=>setIsBiometrics(false)}
+        toggleTheme={toggleTheme}
+        darkMode={darkMode}
         />
 
       </div>

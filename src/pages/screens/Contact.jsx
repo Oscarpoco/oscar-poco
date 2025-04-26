@@ -3,14 +3,13 @@ import '../styles/About.css';
 import '../styles/Contacts.css';
 
 // ICONS
-import { FaFolderOpen, FaCalendarAlt, FaSmile, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaSmile, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { MdDownload, MdInfo, MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md';
 import { IoIosArrowForward } from 'react-icons/io';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MdEmail, MdPhone, MdLocationOn, MdSend } from 'react-icons/md';
 
-function Contacts() {
-    const [darkMode, setDarkMode] = useState(false);
+function Contacts({darkMode, toggleTheme}) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -21,12 +20,6 @@ function Contacts() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [activeField, setActiveField] = useState(null);
-
-    // Theme toggle handler
-    const toggleTheme = () => {
-        setDarkMode(!darkMode);
-        document.body.classList.toggle('dark-theme');
-    };
 
     // Scroll event handler
     useEffect(() => {
@@ -159,7 +152,7 @@ function Contacts() {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button contact-btn">
+                    <button className="action-button contact-btn" id="mobileSideBar">
                         <MdInfo className="action-icon" />
                         <span className="mobileSideBar">Contact Info</span>
                     </button>

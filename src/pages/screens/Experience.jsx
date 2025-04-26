@@ -13,15 +13,9 @@ import { motion } from 'framer-motion';
 // DATABASE
 import { experienceData } from "../Database/ExperienceData";
 
-function Experience() {
-    const [darkMode, setDarkMode] = useState(false);
+function Experience({darkMode, toggleTheme}) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
-  
-    const toggleTheme = () => {
-        setDarkMode(!darkMode);
-        document.body.classList.toggle('dark-theme');
-    };
    
     useEffect(() => {
         const handleScroll = () => {
@@ -90,7 +84,7 @@ function Experience() {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button contact-btn">
+                    <button className="action-button contact-btn" id="mobileSideBar">
                         <MdInfo className="action-icon" />
                         <span className="mobileSideBar">Contact Info</span>
                     </button>

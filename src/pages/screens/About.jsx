@@ -14,16 +14,9 @@ import { motion } from 'framer-motion';
 // DATABASE
 import { portfolioStats, featuredProjects } from "../Database/AboutData";
 
-function About() {
+function About({darkMode, toggleTheme}) {
     const [activeTab, setActiveTab] = useState('featured');
-    const [darkMode, setDarkMode] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    
-    // Theme toggle handler
-    const toggleTheme = () => {
-        setDarkMode(!darkMode);
-        document.body.classList.toggle('dark-theme');
-    };
 
     // Scroll event handler
     useEffect(() => {
@@ -93,7 +86,7 @@ function About() {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button contact-btn">
+                    <button className="action-button contact-btn" id="mobileSideBar">
                         <MdInfo className="action-icon" />
                         <span className="mobileSideBar">Contact Info</span>
                     </button>

@@ -14,16 +14,9 @@ import { educationData, certificateData } from "../Database/EducationProjects";
 
 
 
-function Education() {
-    const [darkMode, setDarkMode] = useState(false);
+function Education({darkMode, toggleTheme}) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeEducation, setActiveEducation] = useState(0);
-    
-    // Theme toggle handler
-    const toggleTheme = () => {
-        setDarkMode(!darkMode);
-        document.body.classList.toggle('dark-theme');
-    };
 
     // Scroll event handler
     useEffect(() => {
@@ -94,7 +87,7 @@ function Education() {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button contact-btn">
+                    <button className="action-button contact-btn" id="mobileSideBar">
                         <MdInfo className="action-icon" />
                         <span className="mobileSideBar">Contact Info</span>
                     </button>

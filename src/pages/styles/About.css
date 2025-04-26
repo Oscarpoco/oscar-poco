@@ -48,6 +48,7 @@ body {
     overflow-y: auto;
     transition: all var(--transition-speed) ease;
     position: relative;
+    background-color: var(--background);
 }
 
 /* THEME TOGGLE */
@@ -1041,7 +1042,7 @@ body {
     /* HEADER SECTION */
     .about-header {
         margin-bottom: 0px;
-        padding: 0px 10px;
+        padding: 0px 10px 7px;
         border-radius: 0;
     }
 
@@ -1093,6 +1094,11 @@ body {
         gap: 0;
         padding: 10px;
         border-radius: 12px;
+    }
+
+    #mobileSideBar
+    {
+        display: none;
     }
 
 

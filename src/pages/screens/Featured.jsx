@@ -13,17 +13,10 @@ import { MdDownload, MdInfo, MdOutlineLightMode, MdOutlineDarkMode, MdAdd, MdRem
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 import { motion, AnimatePresence } from 'framer-motion';
 
-function Featured({ isAuthenticated }) {
-    const [darkMode, setDarkMode] = useState(false);
+function Featured({ isAuthenticated, darkMode, toggleTheme }) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeTab, setActiveTab] = useState('featured');
     const [activeProject, setActiveProject] = useState(0);
-
-    // Theme toggle handler
-    const toggleTheme = () => {
-        setDarkMode(!darkMode);
-        document.body.classList.toggle('dark-theme');
-    };
 
     // Scroll event handler
     useEffect(() => {
@@ -188,7 +181,7 @@ function Featured({ isAuthenticated }) {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button contact-btn">
+                    <button className="action-button contact-btn" id="mobileSideBar">
                         <MdInfo className="action-icon" />
                         <span className="mobileSideBar">Contact Info</span>
                     </button>

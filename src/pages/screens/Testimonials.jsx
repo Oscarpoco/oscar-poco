@@ -13,17 +13,11 @@ import { motion } from 'framer-motion';
 // DATABASE 
 import { testimonials } from "../Database/TestimonialsData";
 
-function Testimonials() {
-    const [darkMode, setDarkMode] = useState(false);
+function Testimonials({darkMode, toggleTheme}) {
+
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeTestimonial, setActiveTestimonial] = useState(0);
     
-    // Theme toggle handler
-    const toggleTheme = () => {
-        setDarkMode(!darkMode);
-        document.body.classList.toggle('dark-theme');
-    };
-
     // Scroll event handler
     useEffect(() => {
         const handleScroll = () => {
@@ -115,6 +109,7 @@ function Testimonials() {
                         className="action-button contact-btn"
                         whileHover={{ y: -5, boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.2)" }}
                         whileTap={{ y: 0, boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)" }}
+                        id="mobileSideBar"
                     >
                         <MdInfo className="action-icon" />
                         <span className="mobileSideBar">Contact Info</span>

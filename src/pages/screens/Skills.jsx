@@ -18,14 +18,8 @@ import { FiCoffee } from 'react-icons/fi';
 import { FiPenTool } from 'react-icons/fi';
 import { FiDatabase } from 'react-icons/fi';
 
-function Skills() {
-    const [darkMode, setDarkMode] = useState(false);
+function Skills({darkMode, toggleTheme}) {
     const [isScrolled, setIsScrolled] = useState(false);
-    
-    const toggleTheme = () => {
-        setDarkMode(!darkMode);
-        document.body.classList.toggle('dark-theme');
-    };
     
     useEffect(() => {
         const handleScroll = () => {
@@ -151,7 +145,7 @@ function Skills() {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button contact-btn">
+                    <button className="action-button contact-btn" id="mobileSideBar">
                         <MdInfo className="action-icon" />
                         <span className="mobileSideBar">Contact Info</span>
                     </button>

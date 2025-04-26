@@ -9,18 +9,10 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { AiOutlineStar } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
 
-function NavigationBar({ onOpen, isAuthenticated }) {
-    const [darkMode, setDarkMode] = useState(false);
+function NavigationBar({ onOpen, isAuthenticated, darkMode,toggleTheme }) {
     const [notifications, setNotifications] = useState(3);
     const [searchFocused, setSearchFocused] = useState(false);
 
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-        // Here you would implement your dark mode logic
-        document.body.classList.toggle('dark-theme');
-    };
-
-    // Animation for notification badge
     useEffect(() => {
         const timer = setTimeout(() => {
             const badge = document.querySelector('.notification-badge');
@@ -86,7 +78,7 @@ function NavigationBar({ onOpen, isAuthenticated }) {
                 </div>
 
                 {/* DARK MODE TOGGLE */}
-                <div className="Dark-Mode" onClick={toggleDarkMode}>
+                <div className="Dark-Mode" onClick={toggleTheme}>
                     {darkMode ?
                         <MdLightMode className="mode-icon" size={20} /> :
                         <MdDarkMode className="mode-icon" size={20} />
