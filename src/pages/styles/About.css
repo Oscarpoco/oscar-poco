@@ -83,7 +83,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 50px;
-    padding: 20px 30px;
+    padding: 10px 30px;
     border-radius: 0;
     position: sticky;
     top: 0;
@@ -110,7 +110,7 @@ body {
 }
 
 .about-header h1 {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     color: var(--text-dark);
     margin: 0 0 8px 0;
@@ -118,7 +118,7 @@ body {
 }
 
 .about-header.scrolled h1 {
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .breadcrumb {

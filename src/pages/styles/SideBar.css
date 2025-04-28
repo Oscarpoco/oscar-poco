@@ -3,7 +3,7 @@
     background: #2363C7;
     height: 100%;
     width: 15%;
-    border-top-right-radius: 20px;
+    border-top-right-radius: 0;
     color: white;
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
     overflow-y: hidden;
