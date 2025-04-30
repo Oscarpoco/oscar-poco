@@ -134,7 +134,7 @@ function Profile({ onClose }) {
                <FaGithub size={16} />
             </motion.a>
             <motion.a 
-              href="linkedin.com/in/oscar-poco-71528016b/" 
+              href="https://linkedin.com/in/oscar-poco-71528016b/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="Contact-btn"

@@ -266,7 +266,7 @@ function Contacts({darkMode, toggleTheme}) {
                             variants={itemVariants}
                         >
                             <motion.a
-                                href="#"
+                                href="https://github.com/Oscarpoco"
                                 className="social-icon"
                                 whileHover={{ y: -8, backgroundColor: "rgba(255, 255, 255, 0.3)" }}
                                 transition={{ type: "spring", stiffness: 300, damping: 10 }}
@@ -274,7 +274,7 @@ function Contacts({darkMode, toggleTheme}) {
                                 <FaGithub />
                             </motion.a>
                             <motion.a
-                                href="#"
+                                href="https://linkedin.com/in/oscar-poco-71528016b/"
                                 className="social-icon"
                                 whileHover={{ y: -8, backgroundColor: "rgba(255, 255, 255, 0.3)" }}
                                 transition={{ type: "spring", stiffness: 300, damping: 10 }}
@@ -282,7 +282,7 @@ function Contacts({darkMode, toggleTheme}) {
                                 <FaLinkedin />
                             </motion.a>
                             <motion.a
-                                href="#"
+                                href="https://x.com/PocoOscar"
                                 className="social-icon"
                                 whileHover={{ y: -8, backgroundColor: "rgba(255, 255, 255, 0.3)" }}
                                 transition={{ type: "spring", stiffness: 300, damping: 10 }}

@@ -233,7 +233,7 @@ function Testimonials({darkMode, toggleTheme}) {
                 transition={{ delay: 0.7, duration: 0.5 }}
             >
                 <motion.a 
-                    href="#" 
+                    href="https://github.com/Oscarpoco"
                     className="social-link"
                     whileHover={{ y: -8, backgroundColor: "#2363C7", color: "#ffffff" }}
                     whileTap={{ y: 0 }}
@@ -241,7 +241,7 @@ function Testimonials({darkMode, toggleTheme}) {
                     <FaGithub />
                 </motion.a>
                 <motion.a 
-                    href="#" 
+                    href="https://linkedin.com/in/oscar-poco-71528016b/"
                     className="social-link"
                     whileHover={{ y: -8, backgroundColor: "#2363C7", color: "#ffffff" }}
                     whileTap={{ y: 0 }}
@@ -249,7 +249,7 @@ function Testimonials({darkMode, toggleTheme}) {
                     <FaLinkedin />
                 </motion.a>
                 <motion.a 
-                    href="#" 
+                    href="https://x.com/PocoOscar"
                     className="social-link"
                     whileHover={{ y: -8, backgroundColor: "#2363C7", color: "#ffffff" }}
                     whileTap={{ y: 0 }}

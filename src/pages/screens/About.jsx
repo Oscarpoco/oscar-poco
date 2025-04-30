@@ -86,10 +86,6 @@ function About({darkMode, toggleTheme}) {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button contact-btn" id="mobileSideBar">
-                        <MdInfo className="action-icon" />
-                        <span className="mobileSideBar">Contact Info</span>
-                    </button>
                     <button className="action-button download-btn primary">
                         <MdDownload className="action-icon" />
                         <span className="mobileSideBar">Download CV</span>
@@ -121,7 +117,7 @@ function About({darkMode, toggleTheme}) {
                         </div>
                         <div className="social-links">
                             <motion.a 
-                                href="#" 
+                                href="https://github.com/Oscarpoco"
                                 className="social-link"
                                 whileHover={{ y: -5, scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
@@ -129,7 +125,7 @@ function About({darkMode, toggleTheme}) {
                                 <FaGithub />
                             </motion.a>
                             <motion.a 
-                                href="#" 
+                                href="https://linkedin.com/in/oscar-poco-71528016b/"  
                                 className="social-link"
                                 whileHover={{ y: -5, scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
@@ -137,7 +133,7 @@ function About({darkMode, toggleTheme}) {
                                 <FaLinkedin />
                             </motion.a>
                             <motion.a 
-                                href="#"
+                                href="https://x.com/PocoOscar"
                                 className="social-link"
                                 whileHover={{ y: -5, scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}

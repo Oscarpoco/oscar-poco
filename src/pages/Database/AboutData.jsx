@@ -7,7 +7,7 @@ export const portfolioStats = [
             id: 1,
             title: "PROJECTS",
             icon: <FaFolderOpen className="folder-icon" />,
-            count: 24,
+            count: "3+",
             color: "#2363C7", // Blue
             gradient: "linear-gradient(135deg, #2363C7, #4285F4)",
             users: [
@@ -21,9 +21,9 @@ export const portfolioStats = [
             id: 2,
             title: "EXPERIENCE",
             icon: <FaCalendarAlt className="folder-icon" />,
-            count: 5,
+            count: "1+",
             subtitle: "Years",
-            color: "#1FA463", // Green
+            color: "#1FA463", 
             gradient: "linear-gradient(135deg, #1FA463, #27AE60)",
             users: [
                 "https://i.pravatar.cc/150?img=5",
@@ -35,7 +35,7 @@ export const portfolioStats = [
             id: 3,
             title: "HAPPY CLIENTS",
             icon: <FaSmile className="folder-icon" />,
-            count: 18,
+            count: "10+",
             color: "#E74C3C", // Red
             gradient: "linear-gradient(135deg, #E74C3C, #FF7675)",
             users: [
@@ -56,7 +56,7 @@ export const featuredProjects = [
             icon: "https://img.icons8.com/fluency/48/000000/online-store.png",
             lastModified: "Apr 12, 2025",
             type: "React.js", 
-            link: ""
+            link: "https://hotel-application-beta.vercel.app"
         },
         {
             id: 2,
@@ -65,7 +65,7 @@ export const featuredProjects = [
             icon: "https://img.icons8.com/fluency/48/000000/todo-list.png",
             lastModified: "Mar 28, 2025",
             type: "React Native",
-            link: ""
+            link: "https://github.com/mLab-alscar-projects"
         },
         {
             id: 3,
@@ -74,6 +74,6 @@ export const featuredProjects = [
             icon: "https://img.icons8.com/fluency/48/000000/web-design.png",
             lastModified: "Apr 18, 2025",
             type: "React.js",
-            link: ""
+            link: "https://hotel-management-system-iota.vercel.app/"
         }
     ];

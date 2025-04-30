@@ -1,81 +1,98 @@
 
-// ICONS
-import { FaGraduationCap, FaUniversity, FaAward, FaMedal, FaCertificate } from 'react-icons/fa';
-import { BiLaptop, BiCodeAlt } from 'react-icons/bi';
+import { FaGraduationCap, FaUniversity, FaMedal, FaCertificate, FaCar, FaLaptopCode, FaChalkboardTeacher, FaCode  } from 'react-icons/fa';
 
 
 
 export const educationData = [
-        {
-            id: 1,
-            degree: "Diploma in Accounting Science",
-            institution: "University of South Africa",
-            period: "2024 - Current",
-            location: "South Africa",
-            description: "Specialized in Artificial Intelligence and Machine Learning. Completed thesis on Neural Network Optimization Techniques. GPA: 3.92/4.0",
-            courses: ["Advanced Algorithms", "Machine Learning", "Neural Networks", "Computer Vision", "NLP"],
-            icon: <FaGraduationCap />
-        },
-        {
-            id: 2,
-            degree: "National Senior Certicate",
-            institution: "N'wanati High School",
-            period: "2014 - 2018",
-            location: "South Africa, Limpopo",
-            description: "Focused on software development and computer architecture. Participated in multiple hackathons and led programming club. Dean's List all semesters. GPA: 3.87/4.0",
-            courses: ["Data Structures", "Operating Systems", "Database Systems", "Web Development", "Software Engineering"],
-            icon: <FaUniversity />
-        }
-    ];
+    {
+        id: 1,
+        degree: "Diploma in Accounting Science",
+        institution: "University of South Africa (UNISA)",
+        period: "2024 - Current",
+        location: "South Africa",
+        description: "Focused on financial accounting, auditing, taxation, and business law. This program prepares students for a professional career in accounting with strong analytical and ethical foundations.",
+        courses: [
+            "Financial Accounting Principles",
+            "Management Accounting",
+            "Auditing Theory and Practice",
+            "South African Tax Law",
+            "Corporate Governance"
+        ],
+        icon: <FaGraduationCap />
+    },
+    {
+        id: 2,
+        degree: "National Senior Certificate",
+        institution: "N'wanati High School",
+        period: "2014 - 2018",
+        location: "Limpopo, South Africa",
+        description: "Completed with a strong emphasis on Mathematics and Physical Sciences. Participated in science fairs, led peer tutoring groups, and achieved better results in multiple subjects.",
+        courses: [
+            "Mathematics",
+            "Physical Science",
+            "English FAL",
+            "Geography",
+        ],
+        icon: <FaUniversity />
+    }
+];
 
 
 export const certificateData = [
         {
             id: 1,
-            title: "AWS Certified Solutions Architect",
-            issuer: "Amazon Web Services",
-            date: "March 2023",
-            icon: <FaAward />,
+            title: "React Course NQF 5",
+            issuer: "CodeTribe",
+            date: "April 2025",
+            icon: <FaLaptopCode  />,
             color: "#FF9900"
         },
         {
             id: 2,
-            title: "Google Cloud Professional Engineer",
-            issuer: "Google",
-            date: "November 2022",
-            icon: <FaCertificate />,
+            title: "Web Development",
+            issuer: "PLP Academy",
+            date: "December 2023",
+            icon: <FaCode  />,
             color: "#4285F4"
         },
         {
             id: 3,
-            title: "Microsoft Azure Developer Associate",
-            issuer: "Microsoft",
-            date: "July 2022",
+            title: "National Senior Certificate",
+            issuer: "Umalusi",
+            date: "December 2018",
             icon: <FaMedal />,
             color: "#0078D4"
         },
         {
             id: 4,
-            title: "TensorFlow Developer Certificate",
-            issuer: "Google",
-            date: "May 2022",
-            icon: <BiCodeAlt />,
+            title: "Digital Literacy Productivity",
+            issuer: "Microsoft",
+            date: "June 2022",
+            icon: <FaCertificate  />,
             color: "#FF6F00"
         },
         {
             id: 5,
-            title: "Full Stack Web Development",
-            issuer: "Udacity",
+            title: "Basic Hast Training",
+            issuer: "ANOVA Health Institute",
             date: "January 2022",
-            icon: <BiLaptop />,
+            icon: <FaChalkboardTeacher  />,
             color: "#01B3E3"
         },
         {
             id: 6,
-            title: "Deep Learning Specialization",
-            issuer: "Coursera",
-            date: "October 2021",
-            icon: <FaAward />,
+            title: "Software Development",
+            issuer: "Microsoft An LinkedIn",
+            date: "December 2022",
+            icon: <FaLaptopCode  />,
             color: "#2A73CC"
+        },
+        {
+            id: 7,
+            title: "Code 10 C1 Driving License",
+            issuer: "South African Licensing Department",
+            date: "April 2024",
+            icon: <FaCar />,
+            color: "#4CAF50"
         }
     ];

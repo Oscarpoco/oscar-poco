@@ -1,30 +1,29 @@
-
 export const testimonials = [
     {
         id: 1,
-        name: "Emily Johnson",
+        name: "Thandiwe Mokoena",
         role: "UI/UX Designer",
-        avatar: "https://i.pravatar.cc/150?img=1",
-        content: "Working with this team was an incredible experience. The attention to detail and creative solutions exceeded my expectations.",
+        avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+        content: "Collaborating with this team was a smooth and rewarding experience. Their designs brought our app to life in a way that truly resonates with our local users.",
         rating: 5,
-        company: "Design Studios Inc."
+        company: "Joburg Digital Studio"
     },
     {
         id: 2,
-        name: "Michael Chen",
+        name: "Lerato Mahlangu",
         role: "Project Manager",
-        avatar: "https://i.pravatar.cc/150?img=2",
-        content: "I was impressed by the professionalism and timely delivery. Our project was completed ahead of schedule with outstanding quality.",
+        avatar: "https://randomuser.me/api/portraits/women/70.jpg",
+        content: "Exceptional project management and on-time delivery. Their agile methods kept the whole team in sync and focused.",
         rating: 5,
-        company: "Tech Innovations"
+        company: "Mzansi Tech Solutions"
     },
     {
         id: 3,
-        name: "Sophia Williams",
-        role: "Marketing Director",
-        avatar: "https://i.pravatar.cc/150?img=3",
-        content: "The creative approach and strategic insights provided by this team helped us boost our conversion rates significantly.",
+        name: "Sipho Dlamini",
+        role: "Marketing Lead",
+        avatar: "https://randomuser.me/api/portraits/men/75.jpg",
+        content: "Thanks to their strategic approach and creative design work, our campaign achieved excellent reach across multiple provinces.",
         rating: 4,
-        company: "Growth Marketing Co."
+        company: "Cape Town Media Hub"
     }
 ];

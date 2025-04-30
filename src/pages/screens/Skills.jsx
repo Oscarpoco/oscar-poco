@@ -3,20 +3,14 @@ import React, { useState, useEffect } from "react";
 import '../styles/About.css';
 import '../styles/Skills.css';
 
-// ICONS - Import one by one to avoid errors
+// ICONS 
 import { MdDownload, MdInfo, MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md';
 import { IoIosArrowForward } from 'react-icons/io';
 import { motion } from 'framer-motion';
-// Different icon set - importing one by one
-import { FiMonitor } from 'react-icons/fi';
-import { FiSmartphone } from 'react-icons/fi';
-import { FiGrid } from 'react-icons/fi';
-import { FiEdit2 } from 'react-icons/fi';
-import { FiSettings } from 'react-icons/fi';
-import { FiLayers } from 'react-icons/fi';
-import { FiCoffee } from 'react-icons/fi';
-import { FiPenTool } from 'react-icons/fi';
-import { FiDatabase } from 'react-icons/fi';
+
+
+// DATABASE
+import { skillsData } from "../Database/SkillsData";
 
 function Skills({ darkMode, toggleTheme }) {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -58,63 +52,6 @@ function Skills({ darkMode, toggleTheme }) {
         }
     };
 
-    // Skills data with different icons
-    const skillsData = [
-        {
-            id: 1,
-            title: "UI/UX Design",
-            icon: <FiMonitor />,
-            description: "Creating intuitive interfaces and exceptional user experiences."
-        },
-        {
-            id: 2,
-            title: "Application Design",
-            icon: <FiSmartphone />,
-            description: "Designing functional and beautiful application interfaces."
-        },
-        {
-            id: 3,
-            title: "Website Design",
-            icon: <FiGrid />,
-            description: "Building responsive and engaging website layouts."
-        },
-        {
-            id: 4,
-            title: "UI Design",
-            icon: <FiEdit2 />,
-            description: "Crafting attractive user interface components and systems."
-        },
-        {
-            id: 5,
-            title: "Design System",
-            icon: <FiSettings />,
-            description: "Creating cohesive design languages and component libraries."
-        },
-        {
-            id: 6,
-            title: "Wireframing",
-            icon: <FiLayers />,
-            description: "Building structural blueprints for digital products."
-        },
-        {
-            id: 7,
-            title: "Brand Identity",
-            icon: <FiCoffee />,
-            description: "Developing cohesive visual identity systems for brands."
-        },
-        {
-            id: 8,
-            title: "Illustration",
-            icon: <FiPenTool />,
-            description: "Creating custom illustrations and visual assets."
-        },
-        {
-            id: 9,
-            title: "Web App Design",
-            icon: <FiDatabase />,
-            description: "Designing responsive web applications with modern features."
-        }
-    ];
 
     return (
         <div className={`about-container ${darkMode ? 'dark-theme' : ''}`}>
@@ -192,8 +129,8 @@ function Skills({ darkMode, toggleTheme }) {
                             {skill.icon}
                         </div>
                         <h3 className="skill-title">{skill.title}</h3>
-                        <p className="skill-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do...</p>
-                        <a href="#" className="learn-more">
+                        <p className="skill-description">{skill.description}</p>
+                        <a href={skill.link} className="learn-more">
                             Learn more <IoIosArrowForward className="arrow-icon" />
                         </a>
                     </motion.div>

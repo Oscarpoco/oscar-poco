@@ -167,7 +167,7 @@ function Education({darkMode, toggleTheme}) {
                 animate="visible"
             >
                 <div className="section-header">
-                    <h2 className="section-title">Professional Certifications</h2>
+                    <h2 className="section-title">Certifications & Licenses</h2>
                 </div>
 
                 <div className="certificates-grid">
