@@ -299,6 +299,7 @@ function Contacts({darkMode, toggleTheme}) {
                         <motion.h2
                             variants={itemVariants}
                             whileHover={{ scale: 1.05, originX: 0, color: "#2363C7" }}
+                            className="send-message-text"
                         >
                             Send a Message
                         </motion.h2>

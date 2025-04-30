@@ -659,7 +659,7 @@
       padding-top: 50px;
     }
     
-    .profile-components::-webkit-scrollbar {
+    /* .profile-components::-webkit-scrollbar {
       width: 5px;
     }
     
@@ -675,7 +675,7 @@
     
     .profile-components::-webkit-scrollbar-thumb:hover {
       background: var(--text-medium);
-    }
+    } */
     
     .Profile-header {
       width: 100%;

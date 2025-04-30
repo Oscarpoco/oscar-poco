@@ -28,7 +28,7 @@
   
   /* Testimonials Section */
   #testimonials-wrapper {
-    overflow: hidden;
+    overflow-y: auto;
   }
   
  .testimonials-section {
@@ -106,7 +106,7 @@
   }
   
   .rating-star.filled {
-    color: #ffc107; /* Filled star color */
+    color: #ffc107; 
   }
   
   .rating-star:not(.filled) {
@@ -117,7 +117,7 @@
     font-size: 1.1rem;
     line-height: 1.6;
     font-style: italic;
-    color: #333;
+    color: var(--text-light);
   }
   
   /* Testimonial Navigation Dots */

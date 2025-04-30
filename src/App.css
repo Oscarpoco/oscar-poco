@@ -39,3 +39,22 @@
   }
 
 }
+
+
+/* SCROLL */
+.Parent-sidebar::-webkit-scrollbar {
+  width: 0px;
+}
+
+.Parent-sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.Parent-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.Parent-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
