@@ -398,7 +398,6 @@
 @media (max-width: 768px) {
   .contact-container {
     flex-direction: column;
-    padding-top: 30px;
   }
 
   .contact-info,
@@ -419,8 +418,9 @@
   }
 
   .contact-info p {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-size: 12px;
+    text-align: center;
 
   }
 
