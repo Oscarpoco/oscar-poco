@@ -116,21 +116,6 @@ function SideBar({ activeItem, setActiveItem, isAuthenticated, setIsBiometrics }
                             </div>
                         </div>
                     </div>
-                    <div className="stats-item">
-                        <div className="stats-icon-container projects-icon">
-                            <FaProjectDiagram className="stats-icon" />
-                        </div>
-                        <div className="stats-info">
-                            <span className="stats-label">PORTFOLIO</span>
-                            <div className="stats-progress-bar">
-                                <div className={`stats-progress-fill projects-progress ${isAnimating ? "animate" : ""}`} style={{ width: "15%" }}></div>
-                            </div>
-                            <div className="stats-details">
-                                <span className="stats-text">15 Showcased Works</span>
-                                <span className="stats-percentage">15%</span>
-                            </div>
-                        </div>
-                    </div>
                     <div className="view-portfolio-button">
                         <span className="mobileSideBar">Full Portfolio</span>192
                         <div className="button-arrow-container">

@@ -390,6 +390,20 @@
 
     }
 
+    .stats-icon-container
+    {
+        width: 100%;
+        height: 50px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    }
+
+    .stats-icon
+    {
+        font-size: 1.5em;
+    }
+
     .stats-details {
         justify-content: flex-start;
         flex-direction: column;
@@ -407,7 +421,8 @@
 
 
     .view-portfolio-button {
-        display: none;
+        flex-direction: column;
+        border-radius: 15px;
     }
 
     .stats-label
