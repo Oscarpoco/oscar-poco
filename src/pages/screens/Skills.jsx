@@ -18,9 +18,9 @@ import { FiCoffee } from 'react-icons/fi';
 import { FiPenTool } from 'react-icons/fi';
 import { FiDatabase } from 'react-icons/fi';
 
-function Skills({darkMode, toggleTheme}) {
+function Skills({ darkMode, toggleTheme }) {
     const [isScrolled, setIsScrolled] = useState(false);
-    
+
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 50) {
@@ -29,26 +29,26 @@ function Skills({darkMode, toggleTheme}) {
                 setIsScrolled(false);
             }
         };
-        
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-    
+
     const containerVariants = {
         hidden: { opacity: 0 },
-        visible: { 
+        visible: {
             opacity: 1,
-            transition: { 
+            transition: {
                 when: "beforeChildren",
                 staggerChildren: 0.1
             }
         }
     };
-    
+
     const itemVariants = {
         hidden: { y: 20, opacity: 0 },
-        visible: { 
-            y: 0, 
+        visible: {
+            y: 0,
             opacity: 1,
             transition: {
                 type: "spring",
@@ -60,72 +60,72 @@ function Skills({darkMode, toggleTheme}) {
 
     // Skills data with different icons
     const skillsData = [
-        { 
-            id: 1, 
-            title: "UI/UX Design", 
-            icon: <FiMonitor />, 
+        {
+            id: 1,
+            title: "UI/UX Design",
+            icon: <FiMonitor />,
             description: "Creating intuitive interfaces and exceptional user experiences."
         },
-        { 
-            id: 2, 
-            title: "Application Design", 
-            icon: <FiSmartphone />, 
+        {
+            id: 2,
+            title: "Application Design",
+            icon: <FiSmartphone />,
             description: "Designing functional and beautiful application interfaces."
         },
-        { 
-            id: 3, 
-            title: "Website Design", 
-            icon: <FiGrid />, 
+        {
+            id: 3,
+            title: "Website Design",
+            icon: <FiGrid />,
             description: "Building responsive and engaging website layouts."
         },
-        { 
-            id: 4, 
-            title: "UI Design", 
-            icon: <FiEdit2 />, 
+        {
+            id: 4,
+            title: "UI Design",
+            icon: <FiEdit2 />,
             description: "Crafting attractive user interface components and systems."
         },
-        { 
-            id: 5, 
-            title: "Design System", 
-            icon: <FiSettings />, 
+        {
+            id: 5,
+            title: "Design System",
+            icon: <FiSettings />,
             description: "Creating cohesive design languages and component libraries."
         },
-        { 
-            id: 6, 
-            title: "Wireframing", 
-            icon: <FiLayers />, 
+        {
+            id: 6,
+            title: "Wireframing",
+            icon: <FiLayers />,
             description: "Building structural blueprints for digital products."
         },
-        { 
-            id: 7, 
-            title: "Brand Identity", 
-            icon: <FiCoffee />, 
+        {
+            id: 7,
+            title: "Brand Identity",
+            icon: <FiCoffee />,
             description: "Developing cohesive visual identity systems for brands."
         },
-        { 
-            id: 8, 
-            title: "Illustration", 
-            icon: <FiPenTool />, 
+        {
+            id: 8,
+            title: "Illustration",
+            icon: <FiPenTool />,
             description: "Creating custom illustrations and visual assets."
         },
-        { 
-            id: 9, 
-            title: "Web App Design", 
-            icon: <FiDatabase />, 
+        {
+            id: 9,
+            title: "Web App Design",
+            icon: <FiDatabase />,
             description: "Designing responsive web applications with modern features."
         }
     ];
-    
+
     return (
         <div className={`about-container ${darkMode ? 'dark-theme' : ''}`}>
             {/* Floating Theme Toggle */}
             <button className="theme-toggle" onClick={toggleTheme}>
                 {darkMode ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
             </button>
-            
+
             {/* HEADER SECTION */}
             <div className={`about-header ${isScrolled ? 'scrolled' : ''}`}>
-                <motion.div 
+                <motion.div
                     className="header-left"
                     initial={{ x: -50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -138,8 +138,8 @@ function Skills({darkMode, toggleTheme}) {
                         <span className="current-page">Skills</span>
                     </div>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                     className="header-actions"
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
@@ -155,27 +155,34 @@ function Skills({darkMode, toggleTheme}) {
                     </button>
                 </motion.div>
             </div>
-            
+
+            <div className="skills-section-wrapper">
+                <div className="section-header">
+                    <h2 className="section-title">Professional Skills</h2>
+                </div>
+            </div>
+
             {/* SKILLS CARDS SECTION */}
-            <motion.div 
+            <motion.div
                 className="skills-card-container"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
             >
+
                 {skillsData.map((skill, index) => (
-                    <motion.div 
-                        key={skill.id} 
+                    <motion.div
+                        key={skill.id}
                         className="skill-card"
                         variants={itemVariants}
-                        whileHover={{ 
+                        whileHover={{
                             y: -5,
                             boxShadow: "0 8px 20px rgba(11, 206, 90, 0.15)",
                             transition: { duration: 0.3 }
                         }}
                         initial={{ opacity: 0, y: 20 }}
-                        animate={{ 
-                            opacity: 1, 
+                        animate={{
+                            opacity: 1,
                             y: 0,
                             transition: { delay: index * 0.1 }
                         }}

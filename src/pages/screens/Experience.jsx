@@ -95,6 +95,12 @@ function Experience({darkMode, toggleTheme}) {
                 </motion.div>
             </div>
 
+            <div className="skills-section-wrapper">
+                <div className="section-header">
+                    <h2 className="section-title">Work Experience</h2>
+                </div>
+            </div>
+
             {/* MODERN EXPERIENCE CARDS SECTION */}
             <motion.div 
                 className="modern-experience-container"

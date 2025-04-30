@@ -192,6 +192,12 @@ function Featured({ isAuthenticated, darkMode, toggleTheme }) {
                 </motion.div>
             </div>
 
+            <div className="skills-section-wrapper">
+                <div className="section-header">
+                    <h2 className="section-title">My Projects</h2>
+                </div>
+            </div>
+
             {/* PROJECT SHOWCASE SECTION */}
             <motion.div
                 className="project-showcase"
