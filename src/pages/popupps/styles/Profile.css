@@ -23,9 +23,9 @@
   
   .profile-parent {
     width: 30%;
-    height: 90vh;
+    height: 100vh;
     position: absolute;
-    bottom: 30px;
+    bottom: 0px;
     right: 20px;
     border-radius: var(--border-radius-md);
     background: rgba(0, 0, 0, .1);
@@ -405,7 +405,7 @@
     box-shadow: 0 0 8px var(--shadow-primary);
   }
   
-  .about-content p {
+  .about-content .about-me-text {
     color: var(--text-medium);
     line-height: 1.7;
     margin-bottom: 1.5em;
@@ -415,7 +415,7 @@
     transition: all var(--transition-medium);
   }
   
-  .about-content p:hover {
+  .about-content .about-me-text:hover {
     border-left-color: var(--primary);
     transform: translateX(3px);
   }
@@ -639,8 +639,10 @@
       width: 100%;
       height: 100vh;
       right: 0;
-      bottom: 0;
+      top: 0;
+      padding: 0;
     }
+
     
     .Profile-avatar {
       width: 110px;
@@ -654,7 +656,7 @@
     .profile-components {
       overflow-y: hidden;
       position: relative;
-      padding-top: 80px;
+      padding-top: 50px;
     }
     
     .profile-components::-webkit-scrollbar {
@@ -683,10 +685,11 @@
       opacity: 0;
       animation: fadeIn 0.6s forwards 0.2s;
       position: absolute;
+      padding: 0 10px;
     }
     
     .close-button {
-      background: none;
+      background: rgba(255, 0, 0, 0.308);
       border: none;
       color: var(--text-medium);
       cursor: pointer;

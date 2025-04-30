@@ -117,7 +117,7 @@ function SideBar({ activeItem, setActiveItem, isAuthenticated, setIsBiometrics }
                         </div>
                     </div>
                     <div className="view-portfolio-button">
-                        <span className="mobileSideBar">Full Portfolio</span>192
+                        <span className="mobileSideBar">Full Portfolio</span>3
                         <div className="button-arrow-container">
                             <IoRocketOutline className="button-icon" />
                         </div>

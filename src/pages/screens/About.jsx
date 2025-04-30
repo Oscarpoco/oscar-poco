@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 // STYLING
 import '../styles/About.css';
-import oscar from '../../assets/oscar.jfif'
+import oscar from '../../assets/user.png'
 import qrcode from '../../assets/qrcode.jfif'
 
 // ICONS

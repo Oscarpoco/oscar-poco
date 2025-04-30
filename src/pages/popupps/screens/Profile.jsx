@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 // STYLINGS
 import '../styles/Profile.css';
-import oscar from '../../../assets/oscar.jfif'
+import oscar from '../../../assets/user.png'
 
 // Icons
 import { FaTimes, FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaDownload, FaMapMarkerAlt } from "react-icons/fa";
@@ -108,7 +108,7 @@ function Profile({ onClose }) {
           
           <motion.div className="contact-buttons" variants={itemVariants}>
             <motion.a 
-              href="mailto:alex@example.com" 
+              href="mailto:oscarkylepoco@gmail.com" 
               className="Contact-btn"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -116,7 +116,7 @@ function Profile({ onClose }) {
                <FaEnvelope size={16} />
             </motion.a>
             <motion.a 
-              href="tel:+11234567890" 
+              href="tel:+27660850741" 
               className="Contact-btn"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -124,7 +124,7 @@ function Profile({ onClose }) {
              <FaPhone size={16} />
             </motion.a>
             <motion.a 
-              href="https://github.com" 
+              href="https://github.com/Oscarpoco" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="Contact-btn"
@@ -134,7 +134,7 @@ function Profile({ onClose }) {
                <FaGithub size={16} />
             </motion.a>
             <motion.a 
-              href="https://linkedin.com" 
+              href="linkedin.com/in/oscar-poco-71528016b/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="Contact-btn"
@@ -192,7 +192,7 @@ function Profile({ onClose }) {
               transition={{ duration: 0.5 }}
             >
               <h3>About Me</h3>
-              <p>
+              <p className="about-me-text">
                 Passionate frontend developer with over 5 years of experience building 
                 responsive and interactive web applications. Specializing in React, 
                 JavaScript, and modern CSS frameworks.
@@ -267,6 +267,9 @@ function Profile({ onClose }) {
               ))}
             </motion.div>
           )}
+
+          <div className="bottom-blur"/>
+
         </div>
       </div>
     </motion.div>
