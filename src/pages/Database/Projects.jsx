@@ -1,5 +1,5 @@
 //  PROJECTS
-import mobile from '../../assets/mobile.jfif'
+import mobile from '../../assets/background-one.jpg'
  
 export const projects = {
         featured: [

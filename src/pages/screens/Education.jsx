@@ -14,7 +14,7 @@ import { educationData, certificateData } from "../Database/EducationProjects";
 
 
 
-function Education({darkMode, toggleTheme}) {
+function Education({darkMode, toggleTheme, handleDownload}) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeEducation, setActiveEducation] = useState(0);
 
@@ -87,11 +87,7 @@ function Education({darkMode, toggleTheme}) {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button contact-btn" id="mobileSideBar">
-                        <MdInfo className="action-icon" />
-                        <span className="mobileSideBar">Contact Info</span>
-                    </button>
-                    <button className="action-button download-btn primary">
+                    <button className="action-button download-btn primary" onClick={handleDownload}>
                         <MdDownload className="action-icon" />
                         <span className="mobileSideBar">Download CV</span>
                     </button>

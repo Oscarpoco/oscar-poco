@@ -13,7 +13,7 @@ import { motion } from 'framer-motion';
 // DATABASE 
 import { testimonials } from "../Database/TestimonialsData";
 
-function Testimonials({darkMode, toggleTheme}) {
+function Testimonials({darkMode, toggleTheme, handleDownload}) {
 
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -105,19 +105,12 @@ function Testimonials({darkMode, toggleTheme}) {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <motion.button 
-                        className="action-button contact-btn"
-                        whileHover={{ y: -5, boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.2)" }}
-                        whileTap={{ y: 0, boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)" }}
-                        id="mobileSideBar"
-                    >
-                        <MdInfo className="action-icon" />
-                        <span className="mobileSideBar">Contact Info</span>
-                    </motion.button>
+                
                     <motion.button 
                         className="action-button download-btn primary"
                         whileHover={{ y: -5, boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.2)" }}
                         whileTap={{ y: 0, boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)" }}
+                        onClick={handleDownload}
                     >
                         <MdDownload className="action-icon" />
                         <span className="mobileSideBar">Download CV</span>
@@ -216,13 +209,14 @@ function Testimonials({darkMode, toggleTheme}) {
             >
                 <h3>Ready to work together?</h3>
                 <p>Let's create something amazing</p>
-                <motion.button 
+                <motion.a 
+                    href="mailto:oscarkylepoco@gmail.com"
                     className="cta-button"
                     whileHover={{ y: -8, boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.3)" }}
                     whileTap={{ y: 0, boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)" }}
                 >
                     Get In Touch
-                </motion.button>
+                </motion.a>
             </motion.div>
             
             {/* Social Links */}

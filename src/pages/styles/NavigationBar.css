@@ -26,17 +26,12 @@
     color: #f0f0f0;
 }
 
-.dark-mode .Search-bar {
-    background-color: #1e1e3a;
-    color: #f0f0f0;
-}
 
 .dark-mode .Portfolio-search {
     border-color: rgba(255, 255, 255, 0.15);
     background-color: #1e1e3a;
 }
 
-.dark-mode .search-icon,
 .dark-mode .nav-icon,
 .dark-mode .mode-icon {
     color: #f0f0f0;
@@ -66,6 +61,10 @@
     transition: all 0.3s ease;
     position: relative;
     margin: 0;
+}
+
+#mobile-device-only {
+    display: none;
 }
 
 .Portfolio-h2:after {
@@ -132,6 +131,33 @@
     overflow: hidden;
 }
 
+.abbreviation::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    transition: all 0.5s ease;
+    animation: shine 1.5s infinite;
+}
+
+.nav-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0
+}
+
+.nav-image {
+    width: 100%;
+    height: 100%;
+}
+
 .abbreviation:before {
     content: '';
     position: absolute;
@@ -152,13 +178,6 @@
 .abbreviation:hover {
     transform: scale(1.05);
     box-shadow: 0 5px 12px rgba(35, 99, 199, 0.5);
-}
-
-.abbreviation-name {
-    color: #fff;
-    font-size: 1.2em;
-    font-weight: 500;
-    margin: 0;
 }
 
 /* ICON CONTAINERS */
@@ -205,9 +224,20 @@
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 62, 62, 0.7); }
-    70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(255, 62, 62, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 62, 62, 0); }
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 62, 62, 0.7);
+    }
+
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(255, 62, 62, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 62, 62, 0);
+    }
 }
 
 .nav-icon {
@@ -267,70 +297,15 @@
     border-color: #4d8bf5;
 }
 
-/* PORTFOLIO SEARCH */
-.Portfolio-search {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 35%;
-    height: 44px;
-    border: 1px solid rgba(0, 0, 0, .15);
-    border-radius: 22px;
-    padding: 0 1.2em;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    background-color: #f9f9f9;
-}
-
-.Portfolio-search.focused {
-    border-color: #2363C7;
-    box-shadow: 0 3px 12px rgba(35, 99, 199, 0.2);
-    transform: translateY(-2px);
-    background-color: #fff;
-}
-
-.dark-mode .Portfolio-search.focused {
-    border-color: #4d8bf5;
-    box-shadow: 0 3px 12px rgba(77, 139, 245, 0.3);
-    background-color: #252547;
-}
-
-.search-icon {
-    color: rgba(0, 0, 0, 0.5);
-    min-width: 24px;
-    transition: color 0.3s ease;
-    font-size: 1.2em;
-}
-
-.Search-bar {
-    width: 100%;
-    height: 100%;
-    padding: 0 1em;
-    outline: none;
-    border: none;
-    background: transparent;
-    font-size: 1em;
-    transition: all 0.3s ease;
-    color: #333;
-}
-
-.Search-bar::placeholder {
-    color: rgba(0, 0, 0, 0.4);
-    transition: color 0.3s ease;
-    font-size: 0.95em;
-}
-
-.dark-mode .Search-bar::placeholder {
-    color: rgba(255, 255, 255, 0.4);
-}
 
 /* RESPONSIVE STYLES */
 @media (max-width: 768px) {
-    .Portfolio-search {
-        width: 45%;
-    }
-    
+
     .user-info {
+        display: none;
+    }
+
+    #mobile-device-only {
         display: none;
     }
 }
@@ -340,26 +315,23 @@
         padding: 1em 10px;
     }
 
-    .Portfolio-search {
-        width: 40%;
+    .Portfolio-name {
+        gap: 0.4em;
     }
-    
+
     .Portfolio-h2 {
-        font-size: 1.2em;
+        display: none;
     }
-    
-    .Search-bar::placeholder {
-        font-size: 0.85em;
+
+    #mobile-device-only {
+        font-size: 1.2em;
+        display: contents;
     }
 
     .abbreviation {
         height: 35px;
         width: 35px;
-    }
-
-    .abbreviation-name {
-        font-size: 1.1em;
-        font-weight: 400;
+        padding: 0;
     }
 
     .Dark-Mode {
@@ -370,5 +342,5 @@
     .Portfolio-user {
         gap: .7em;
     }
-    
+
 }

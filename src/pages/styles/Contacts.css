@@ -197,8 +197,7 @@
   padding: 0;
 }
 
-.send-message-text
-{
+.send-message-text {
   color: var(--text-light);
 }
 
@@ -218,6 +217,7 @@
   font-size: 12px;
   transition: all 0.3s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  color: var(--text-light);
 }
 
 .dark-mode .contact-form input,

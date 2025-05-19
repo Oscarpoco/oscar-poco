@@ -170,10 +170,6 @@
     transition: all 0.2s ease;
 }
 
-.stats-item:hover {
-    background: rgba(255, 255, 255, 0.08);
-}
-
 .stats-icon-container {
     background: rgba(255, 255, 255, 0.2);
     padding: 10px;
@@ -230,7 +226,7 @@
 }
 
 .stats-progress-fill.animate {
-    width: 40% !important;
+    width: 70% !important;
 }
 
 .projects-progress.animate {

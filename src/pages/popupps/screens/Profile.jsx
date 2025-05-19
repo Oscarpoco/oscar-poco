@@ -5,12 +5,16 @@ import { motion } from "framer-motion";
 import '../styles/Profile.css';
 import oscar from '../../../assets/user.png'
 
+// DATA
+import { educationData } from "../../Database/EducationProjects";
+import { experienceData } from "../../Database/ExperienceData";
+
 // Icons
 import { FaTimes, FaEnvelope, FaPhone, FaGithub, FaLinkedin, FaDownload, FaMapMarkerAlt } from "react-icons/fa";
 
-function Profile({ onClose }) {
+function Profile({ onClose, handleDownload }) {
   const [activeTab, setActiveTab] = useState("about");
-  
+
   // Skills data
   const skills = [
     { name: "React", level: 90 },
@@ -19,58 +23,30 @@ function Profile({ onClose }) {
     { name: "Node.js", level: 75 },
     { name: "UI/UX", level: 70 }
   ];
-  
-  // Experience data
-  const experience = [
-    {
-      company: "TechCorp Inc.",
-      position: "Senior Frontend Developer",
-      period: "2022 - Present",
-      description: "Led development of multiple React-based applications"
-    },
-    {
-      company: "WebSolutions",
-      position: "Frontend Developer",
-      period: "2019 - 2022",
-      description: "Developed responsive websites and web applications"
-    }
-  ];
-  
-  // Education data
-  const education = [
-    {
-      institution: "Tech University",
-      degree: "Master of Computer Science",
-      period: "2017 - 2019"
-    },
-    {
-      institution: "State College",
-      degree: "Bachelor of Science in Web Development",
-      period: "2013 - 2017"
-    }
-  ];
-  
+
   // Container animation
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { 
+      transition: {
         duration: 0.5,
         when: "beforeChildren",
         staggerChildren: 0.1
       }
     }
   };
-  
+
   // Child animation
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
   };
 
+  // DOWNLOAD FUNCTION
+
   return (
-    <motion.div 
+    <motion.div
       className="profile-parent"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -78,7 +54,7 @@ function Profile({ onClose }) {
     >
       <div className="profile-components">
         <div className="Profile-header">
-          <motion.button 
+          <motion.button
             className="close-button"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -87,8 +63,8 @@ function Profile({ onClose }) {
             <FaTimes size={20} />
           </motion.button>
         </div>
-        
-        <motion.div 
+
+        <motion.div
           className="Profile-info"
           variants={containerVariants}
           initial="hidden"
@@ -97,46 +73,46 @@ function Profile({ onClose }) {
           <motion.div className="Profile-avatar" variants={itemVariants}>
             <img src={oscar} alt="Oscar Poco" />
           </motion.div>
-          
+
           <motion.h1 variants={itemVariants}>Oscar Kyle Poco</motion.h1>
           <motion.h2 variants={itemVariants}>Frontend Developer</motion.h2>
-          
+
           <motion.div className="Profile-location" variants={itemVariants}>
-          <FaMapMarkerAlt size={16} />
+            <FaMapMarkerAlt size={16} />
             <span>Johannesburg, RSA</span>
           </motion.div>
-          
+
           <motion.div className="contact-buttons" variants={itemVariants}>
-            <motion.a 
-              href="mailto:oscarkylepoco@gmail.com" 
+            <motion.a
+              href="mailto:oscarkylepoco@gmail.com"
               className="Contact-btn"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-               <FaEnvelope size={16} />
+              <FaEnvelope size={16} />
             </motion.a>
-            <motion.a 
-              href="tel:+27660850741" 
+            <motion.a
+              href="tel:+27660850741"
               className="Contact-btn"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-             <FaPhone size={16} />
+              <FaPhone size={16} />
             </motion.a>
-            <motion.a 
-              href="https://github.com/Oscarpoco" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <motion.a
+              href="https://github.com/Oscarpoco"
+              target="_blank"
+              rel="noopener noreferrer"
               className="Contact-btn"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-               <FaGithub size={16} />
+              <FaGithub size={16} />
             </motion.a>
-            <motion.a 
-              href="https://linkedin.com/in/oscar-poco-71528016b/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <motion.a
+              href="https://linkedin.com/in/oscar-poco-71528016b/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="Contact-btn"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -144,20 +120,21 @@ function Profile({ onClose }) {
               <FaLinkedin size={16} />
             </motion.a>
           </motion.div>
-          
-          <motion.button 
+
+          <motion.button
             className="download-cv"
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={handleDownload}
           >
             <FaDownload size={16} />
             <span>Download CV</span>
           </motion.button>
         </motion.div>
-        
+
         <div className="Profile-tabs">
-          <motion.button 
+          <motion.button
             className={`tab-btn ${activeTab === "about" ? "active" : ""}`}
             onClick={() => setActiveTab("about")}
             whileHover={{ y: -2 }}
@@ -165,7 +142,7 @@ function Profile({ onClose }) {
           >
             About
           </motion.button>
-          <motion.button 
+          <motion.button
             className={`tab-btn ${activeTab === "skills" ? "active" : ""}`}
             onClick={() => setActiveTab("skills")}
             whileHover={{ y: -2 }}
@@ -173,7 +150,7 @@ function Profile({ onClose }) {
           >
             Skills
           </motion.button>
-          <motion.button 
+          <motion.button
             className={`tab-btn ${activeTab === "experience" ? "active" : ""}`}
             onClick={() => setActiveTab("experience")}
             whileHover={{ y: -2 }}
@@ -182,10 +159,10 @@ function Profile({ onClose }) {
             Experience
           </motion.button>
         </div>
-        
+
         <div className="tab-content">
           {activeTab === "about" && (
-            <motion.div 
+            <motion.div
               className="about-content"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -193,15 +170,15 @@ function Profile({ onClose }) {
             >
               <h3>About Me</h3>
               <p className="about-me-text">
-                Passionate frontend developer with over 5 years of experience building 
-                responsive and interactive web applications. Specializing in React, 
-                JavaScript, and modern CSS frameworks.
+                Passionate developer with a knack for creating elegant, responsive and user-friendly
+                web applications. Specialized in React.js ecosystem with 1+ years of professional
+                experience building scalable solutions for various industries.
               </p>
-              
+
               <h3>Education</h3>
-              {education.map((edu, index) => (
-                <motion.div 
-                  key={index} 
+              {educationData.map((edu, index) => (
+                <motion.div
+                  key={index}
                   className="education-item"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -214,9 +191,9 @@ function Profile({ onClose }) {
               ))}
             </motion.div>
           )}
-          
+
           {activeTab === "skills" && (
-            <motion.div 
+            <motion.div
               className="skills-content"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -230,7 +207,7 @@ function Profile({ onClose }) {
                     <span>{skill.level}%</span>
                   </div>
                   <div className="skill-bar">
-                    <motion.div 
+                    <motion.div
                       className="skill-progress"
                       initial={{ width: 0 }}
                       animate={{ width: `${skill.level}%` }}
@@ -241,18 +218,18 @@ function Profile({ onClose }) {
               ))}
             </motion.div>
           )}
-          
+
           {activeTab === "experience" && (
-            <motion.div 
+            <motion.div
               className="experience-content"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
               <h3>Work Experience</h3>
-              {experience.map((exp, index) => (
-                <motion.div 
-                  key={index} 
+              {experienceData.map((exp, index) => (
+                <motion.div
+                  key={index}
                   className="experience-item"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -268,7 +245,7 @@ function Profile({ onClose }) {
             </motion.div>
           )}
 
-          <div className="bottom-blur"/>
+          <div className="bottom-blur" />
 
         </div>
       </div>

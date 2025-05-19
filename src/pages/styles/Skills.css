@@ -10,13 +10,12 @@
   /* Skill Card */
   .skill-card 
   {
-    background-color: #fff;
     border-radius: 12px;
     padding: 24px;
     position: relative;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     overflow: hidden;
+    border: 1px solid rgba(35, 99, 199, 0.15);
   }
   
 
@@ -122,8 +121,7 @@
   /* Dark Mode Styles */
   .dark-theme .skill-card 
   {
-    background-color: #1e1e2d;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background-color: var(--card-background);
   }
   
   .dark-theme .skill-title 

@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 // DATABASE
 import { skillsData } from "../Database/SkillsData";
 
-function Skills({ darkMode, toggleTheme }) {
+function Skills({ darkMode, toggleTheme, handleDownload }) {
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
@@ -82,11 +82,7 @@ function Skills({ darkMode, toggleTheme }) {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button contact-btn" id="mobileSideBar">
-                        <MdInfo className="action-icon" />
-                        <span className="mobileSideBar">Contact Info</span>
-                    </button>
-                    <button className="action-button download-btn primary">
+                    <button className="action-button download-btn primary" onClick={handleDownload}>
                         <MdDownload className="action-icon" />
                         <span className="mobileSideBar">Download CV</span>
                     </button>

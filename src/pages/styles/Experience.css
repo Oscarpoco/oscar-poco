@@ -14,12 +14,11 @@
   
   /* Experience Card */
   .experience-card {
-    background-color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
     overflow: hidden;
     position: relative;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(35, 99, 199, 0.15);
   }
   
   .experience-card:hover {
@@ -33,7 +32,7 @@
     top: 0;
     left: 0;
     height: 100%;
-    width: 6px;
+    width: 10px;
     background-color: #0066ff;
     border-radius: 4px 0 0 4px;
   }
@@ -69,7 +68,7 @@
   /* Card Header */
   .experience-card-header {
     margin-bottom: 20px;
-    padding-right: 60px; /* Make room for the icon */
+    padding-right: 60px; 
   }
   
   .experience-position {
@@ -165,8 +164,7 @@
   }
   
   .dark-theme .experience-card {
-    background-color: #1e1e2d;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background-color: var(--card-background);
   }
   
   .dark-theme .experience-position {

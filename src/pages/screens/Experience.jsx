@@ -13,7 +13,7 @@ import { motion } from 'framer-motion';
 // DATABASE
 import { experienceData } from "../Database/ExperienceData";
 
-function Experience({darkMode, toggleTheme}) {
+function Experience({darkMode, toggleTheme, handleDownload}) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
    
@@ -84,11 +84,7 @@ function Experience({darkMode, toggleTheme}) {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button contact-btn" id="mobileSideBar">
-                        <MdInfo className="action-icon" />
-                        <span className="mobileSideBar">Contact Info</span>
-                    </button>
-                    <button className="action-button download-btn primary">
+                    <button className="action-button download-btn primary" onClick={handleDownload}>
                         <MdDownload className="action-icon" />
                         <span className="mobileSideBar">Download CV</span>
                     </button>

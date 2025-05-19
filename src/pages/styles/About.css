@@ -161,7 +161,7 @@ body {
 .action-button:hover {
     border-color: var(--primary-color);
     color: var(--primary-color);
-    transform: translateY(-3px);
+    transform: translateX(3px);
 }
 
 .action-button.primary {
@@ -173,7 +173,7 @@ body {
 
 .action-button.primary:hover {
     background-color: var(--primary-dark);
-    transform: translateY(-3px);
+    transform: translateX(3px);
     box-shadow: 0 8px 20px rgba(35, 99, 199, 0.3);
 }
 
@@ -191,9 +191,7 @@ body {
     overflow: hidden;
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
     gap: 1.5em;
-    border-radius: var(--border-radius-lg);
 }
 
 .profile-section::before {
@@ -235,10 +233,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 15px 30px rgba(35, 99, 199, 0.15);
+    border: 1px solid rgba(35, 99, 199, 0.15);
     overflow: hidden;
     position: relative;
     transition: all var(--transition-speed) ease;
+}
+
+.profile-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: all 0.5s ease;
+  animation: shine 1.5s infinite;
 }
 
 .profile-image:hover {
@@ -450,7 +460,7 @@ body {
 }
 
 .scan-tag {
-    color: #333;
+    color: var(--primary-color);
     font-size: .9em;
 }
 
@@ -662,7 +672,6 @@ body {
 /* PROJECTS SECTION */
 .projects-section {
     background-color: var(--card-bg);
-    border-radius: var(--border-radius-lg);
     padding: 30px;
     box-shadow: var(--card-shadow);
     transition: all var(--transition-speed) ease;
@@ -771,14 +780,14 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--text-dark);
 }
 
-.owner-column, .modified-column
-{
+.owner-column,
+.modified-column {
     color: var(--text-dark);
-} 
+}
 
 .project-icon {
     width: 40px;
@@ -805,7 +814,7 @@ body {
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 400;
     transition: all var(--transition-speed) ease;
 }
 
@@ -822,7 +831,7 @@ body {
 
 .view-project-btn {
     background-color: transparent;
-    border: 1px solid var(--primary-color);
+    border: 1px solid rgba(35, 99, 199, 0.15);
     color: var(--primary-color);
     padding: 8px 16px;
     border-radius: var(--border-radius-sm);
@@ -893,7 +902,7 @@ body {
 
     .profile-content {
         flex-direction: column;
-        gap: 10px;
+        gap: 0;
         width: 100%;
         box-sizing: border-box;
     }
@@ -903,7 +912,8 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 10pxpx;
+        gap: 20px;
+        width: 100%;
     }
 
     .profile-image {
@@ -938,7 +948,7 @@ body {
     }
 
     .profile-name {
-        font-size: 28px;
+        font-size: 24px;
         font-weight: 900;
         text-transform: uppercase;
     }
@@ -1106,8 +1116,7 @@ body {
         border-radius: 12px;
     }
 
-    #mobileSideBar
-    {
+    #mobileSideBar {
         display: none;
     }
 

@@ -42,7 +42,7 @@
     overflow: hidden;
     border-radius: 16px;
     margin: 2rem 0;
-    box-shadow: 0 10px 30px var(--shadow-color);
+    border: 1px solid rgba(35, 99, 199, 0.15);
   }
   
   .testimonials-wrapper {
@@ -188,7 +188,7 @@
   
   .cta-button {
     padding: 0.8rem 2rem;
-    background-color: white;
+    background-color: var(--background-color);
     color: var(--primary-color);
     border: none;
     border-radius: 8px;
@@ -198,6 +198,7 @@
     transition: all var(--animation-duration) var(--transition-timing);
     position: relative;
     overflow: hidden;
+    text-decoration: none;
   }
   
   .cta-button::after {
@@ -209,11 +210,13 @@
     width: 0;
     background-color: rgba(255, 255, 255, 0.2);
     transition: width 0.3s ease;
+    border-radius: 8px;
   }
   
   .cta-button:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
   }
   
   .cta-button:hover::after {

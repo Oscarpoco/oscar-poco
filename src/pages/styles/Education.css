@@ -13,8 +13,8 @@
   /* Education Card */
   .education-card {
     background-color: #fff;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    border: 1px solid rgba(35, 99, 199, 0.15);
     overflow: hidden;
     position: relative;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -33,7 +33,7 @@
     top: 0;
     left: 0;
     height: 100%;
-    width: 6px;
+    width: 10px;
     background-color: #0066ff;
     border-radius: 4px 0 0 4px;
   }
@@ -147,9 +147,8 @@
   
   /* Certificate Card */
   .certificate-card {
-    background-color: #fff;
     border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(35, 99, 199, 0.15);
     overflow: hidden;
     position: relative;
     transition: all 0.3s ease;
@@ -229,8 +228,7 @@
   
   .dark-theme .education-card, 
   .dark-theme .certificate-card {
-    background-color: #1e1e2d;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background-color: var(--card-background);
   }
   
   .dark-theme .education-degree,

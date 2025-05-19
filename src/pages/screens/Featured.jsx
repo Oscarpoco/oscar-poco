@@ -13,7 +13,7 @@ import { MdDownload, MdInfo, MdOutlineLightMode, MdOutlineDarkMode, MdAdd, MdRem
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 import { motion, AnimatePresence } from 'framer-motion';
 
-function Featured({ isAuthenticated, darkMode, toggleTheme }) {
+function Featured({ isAuthenticated, darkMode, toggleTheme, handleDownload }) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeTab, setActiveTab] = useState('featured');
     const [activeProject, setActiveProject] = useState(0);
@@ -181,11 +181,7 @@ function Featured({ isAuthenticated, darkMode, toggleTheme }) {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button contact-btn" id="mobileSideBar">
-                        <MdInfo className="action-icon" />
-                        <span className="mobileSideBar">Contact Info</span>
-                    </button>
-                    <button className="action-button download-btn primary">
+                    <button className="action-button download-btn primary" onClick={handleDownload}>
                         <MdDownload className="action-icon" />
                         <span className="mobileSideBar">Download CV</span>
                     </button>
