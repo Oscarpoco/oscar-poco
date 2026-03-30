@@ -1,80 +1,190 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useInView, useAnimation } from 'framer-motion';
+
 // STYLING
-import '../styles/About.css';
 import '../styles/Skills.css';
 
 // ICONS 
-import { MdDownload, MdInfo, MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md';
+import { MdDownload, MdOutlineLightMode, MdOutlineDarkMode, MdCode } from 'react-icons/md';
 import { IoIosArrowForward } from 'react-icons/io';
-import { motion } from 'framer-motion';
-
+import { FaStar, FaArrowRight } from 'react-icons/fa';
+import { BsLightningChargeFill } from 'react-icons/bs';
 
 // DATABASE
 import { skillsData } from "../Database/SkillsData";
 
-function Skills({ darkMode, toggleTheme, handleDownload }) {
-    const [isScrolled, setIsScrolled] = useState(false);
+// Animated skill card component with scroll reveal
+function AnimatedSkillCard({ skill, index, darkMode }) {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
+    const controls = useAnimation();
+    const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
+        if (isInView) {
+            controls.start("visible");
+        }
+    }, [isInView, controls]);
+
+    const cardVariants = {
+        hidden: {
+            opacity: 0,
+            y: 60,
+            scale: 0.9
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                duration: 0.6,
+                delay: index * 0.1,
+                ease: [0.25, 0.46, 0.45, 0.94]
+            }
+        }
+    };
+
+    return (
+        <motion.div
+            ref={ref}
+            className={`skill-card-premium ${isHovered ? 'hovered' : ''}`}
+            variants={cardVariants}
+            initial="hidden"
+            animate={controls}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            whileHover={{
+                y: -12,
+                scale: 1.02,
+                transition: { duration: 0.3 }
+            }}
+        >
+            {/* Animated accent line */}
+            <motion.div
+                className="accent-line"
+                initial={{ height: "30px" }}
+                animate={{ height: isHovered ? "60px" : "30px" }}
+                transition={{ duration: 0.3 }}
+            />
+
+            {/* Glow effect */}
+            <motion.div
+                className="card-glow"
+                animate={{
+                    opacity: isHovered ? 0.5 : 0,
+                    scale: isHovered ? 1.2 : 0.8
+                }}
+                transition={{ duration: 0.4 }}
+            />
+
+            <div className="skill-card-content">
+                <motion.div
+                    className="skill-icon-wrapper"
+                    animate={{
+                        rotate: isHovered ? 10 : 0,
+                        scale: isHovered ? 1.1 : 1
+                    }}
+                    transition={{ duration: 0.3 }}
+                >
+                    {skill.icon}
+                </motion.div>
+
+                <div className="skill-info">
+                    <h3 className="skill-title">{skill.title}</h3>
+                    <p className="skill-description">{skill.description}</p>
+                </div>
+
+                <motion.a
+                    href={skill.link}
+                    className="skill-link"
+                    animate={{ x: isHovered ? 5 : 0 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    <span>Learn more</span>
+                    <FaArrowRight className="arrow-icon" />
+                </motion.a>
+            </div>
+        </motion.div>
+    );
+}
+
+// Stats card component
+function StatsCard({ icon, value, label, color, delay }) {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+
+    return (
+        <motion.div
+            ref={ref}
+            className="stats-card"
+            initial={{ opacity: 0, y: 30, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+            transition={{ duration: 0.5, delay }}
+            whileHover={{ y: -8, scale: 1.02 }}
+        >
+            <div className="stats-icon" style={{ background: `linear-gradient(135deg, ${color}20, ${color}10)`, color }}>
+                {icon}
+            </div>
+            <div className="stats-info">
+                <span className="stats-value">{value}</span>
+                <span className="stats-label">{label}</span>
+            </div>
+        </motion.div>
+    );
+}
+
+function Skills({ darkMode, toggleTheme, handleDownload }) {
+    const [isScrolled, setIsScrolled] = useState(false);
+    const headerRef = useRef(null);
+
+    useEffect(() => {
+        const handleScroll = (e) => {
+            const target = e.target;
+            if (target.scrollTop > 50) {
                 setIsScrolled(true);
             } else {
                 setIsScrolled(false);
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        const container = document.querySelector('.Child-dashboard');
+        if (container) {
+            container.addEventListener('scroll', handleScroll);
+            return () => container.removeEventListener('scroll', handleScroll);
+        }
     }, []);
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                when: "beforeChildren",
-                staggerChildren: 0.1
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: {
-                type: "spring",
-                stiffness: 100,
-                damping: 10
-            }
-        }
-    };
-
+    // Count skills by category for stats
+    const totalSkills = skillsData?.length || 0;
 
     return (
-        <div className={`about-container ${darkMode ? 'dark-theme' : ''}`}>
+        <div className={`skills-container ${darkMode ? 'dark-theme' : ''}`}>
             {/* Floating Theme Toggle */}
-            <button className="theme-toggle" onClick={toggleTheme}>
+            <motion.button
+                className="theme-toggle"
+                onClick={toggleTheme}
+                whileHover={{ scale: 1.1, rotate: 15 }}
+                whileTap={{ scale: 0.9 }}
+            >
                 {darkMode ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
-            </button>
+            </motion.button>
 
             {/* HEADER SECTION */}
-            <div className={`about-header ${isScrolled ? 'scrolled' : ''}`}>
-                <motion.div
-                    className="header-left"
-                    initial={{ x: -50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <h1>My Portfolio</h1>
+            <motion.div
+                ref={headerRef}
+                className={`skills-header ${isScrolled ? 'scrolled' : ''}`}
+                initial={{ y: -30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+            >
+                <div className="header-left">
+                    <h1 className="page-title">Technical Skills</h1>
                     <div className="breadcrumb">
-                        <span>Dashboard</span>
+                        <span>Portfolio</span>
                         <IoIosArrowForward className="breadcrumb-icon" />
                         <span className="current-page">Skills</span>
                     </div>
-                </motion.div>
+                </div>
 
                 <motion.div
                     className="header-actions"
@@ -82,56 +192,70 @@ function Skills({ darkMode, toggleTheme, handleDownload }) {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button download-btn primary" onClick={handleDownload}>
-                        <MdDownload className="action-icon" />
-                        <span className="mobileSideBar">Download CV</span>
-                    </button>
-                </motion.div>
-            </div>
-
-            <div className="skills-section-wrapper">
-                <div className="section-header">
-                    <h2 className="section-title">Professional Skills</h2>
-                </div>
-            </div>
-
-            {/* SKILLS CARDS SECTION */}
-            <motion.div
-                className="skills-card-container"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-            >
-
-                {skillsData.map((skill, index) => (
-                    <motion.div
-                        key={skill.id}
-                        className="skill-card"
-                        variants={itemVariants}
-                        whileHover={{
-                            y: -5,
-                            boxShadow: "0 8px 20px rgba(11, 206, 90, 0.15)",
-                            transition: { duration: 0.3 }
-                        }}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{
-                            opacity: 1,
-                            y: 0,
-                            transition: { delay: index * 0.1 }
-                        }}
+                    <motion.button
+                        className="download-btn"
+                        onClick={handleDownload}
+                        whileHover={{ scale: 1.02, x: 3 }}
+                        whileTap={{ scale: 0.98 }}
                     >
-                        <div className="green-line"></div>
-                        <div className="skill-icon-container">
-                            {skill.icon}
-                        </div>
-                        <h3 className="skill-title">{skill.title}</h3>
-                        <p className="skill-description">{skill.description}</p>
-                        <a href={skill.link} className="learn-more">
-                            Learn more <IoIosArrowForward className="arrow-icon" />
-                        </a>
-                    </motion.div>
-                ))}
+                        <MdDownload className="btn-icon" />
+                        <span className="btn-text">Download CV</span>
+                    </motion.button>
+                </motion.div>
             </motion.div>
+
+            {/* STATS SECTION */}
+            <div className="skills-stats">
+                <StatsCard
+                    icon={<MdCode />}
+                    value={`${totalSkills}+`}
+                    label="Technologies"
+                    color="#2363C7"
+                    delay={0.1}
+                />
+                <StatsCard
+                    icon={<FaStar />}
+                    value="1+"
+                    label="Years Experience"
+                    color="#f59e0b"
+                    delay={0.2}
+                />
+                <StatsCard
+                    icon={<BsLightningChargeFill />}
+                    value="100%"
+                    label="Commitment"
+                    color="#10b981"
+                    delay={0.3}
+                />
+            </div>
+
+            {/* SECTION HEADER */}
+            <motion.div
+                className="section-intro"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+            >
+                <h2 className="section-title">
+                    <span className="title-accent" />
+                    Professional Skillset
+                </h2>
+                <p className="section-subtitle">
+                    A comprehensive toolkit of technologies and frameworks I use to build modern, scalable applications.
+                </p>
+            </motion.div>
+
+            {/* SKILLS CARDS GRID */}
+            <div className="skills-grid">
+                {skillsData && skillsData.map((skill, index) => (
+                    <AnimatedSkillCard
+                        key={skill.id}
+                        skill={skill}
+                        index={index}
+                        darkMode={darkMode}
+                    />
+                ))}
+            </div>
         </div>
     );
 }

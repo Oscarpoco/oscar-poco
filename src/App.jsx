@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 
 // SCREENS
 import NavigationBar from './pages/screens/NavigationBar.jsx';
@@ -8,6 +8,9 @@ import Dashboard from "./pages/screens/Dashboard.jsx";
 // POPUPPS
 import Profile from './pages/popupps/screens/Profile.jsx';
 
+// COMPONENTS
+import IntroAnimation from './components/IntroAnimation.jsx';
+
 // STYLINGS
 import './App.css';
 
@@ -15,6 +18,8 @@ import './App.css';
 import resume from './assets/oscarkylpoco.pdf'
 
 function App() {
+  // INTRO ANIMATION STATE
+  const [showIntro, setShowIntro] = useState(true);
 
   // SIDEBAR NAVIGATION STATE
   const [activeItem, setActiveItem] = useState("Dashboard");
@@ -23,10 +28,9 @@ function App() {
   const [isProfile, setIsProfile] = useState(false);
 
   // AUTH
-  const [isAuthenticated, setIsAthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // DARK MODE
-
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleTheme = () => {
@@ -46,16 +50,29 @@ function App() {
     document.body.removeChild(link);
   };
 
+  // NAVIGATE TO SECTION - passed to About component for card clicks
+  const navigateToSection = useCallback((section) => {
+    setActiveItem(section);
+  }, []);
 
+  // HANDLE INTRO COMPLETE
+  const handleIntroComplete = useCallback(() => {
+    setShowIntro(false);
+  }, []);
+
+  if (showIntro) {
+    return <IntroAnimation onComplete={handleIntroComplete} />;
+  }
 
   return (
-    <div className='Parent'>
+    <div className={`Parent ${darkMode ? 'dark-theme' : ''}`}>
       <div className='top'>
         <NavigationBar
           onOpen={() => setIsProfile(true)}
           isAuthenticated={isAuthenticated}
           toggleTheme={toggleTheme}
           darkMode={darkMode}
+          activeItem={activeItem}
         />
       </div>
 
@@ -66,6 +83,7 @@ function App() {
           activeItem={activeItem}
           setActiveItem={setActiveItem}
           isAuthenticated={isAuthenticated}
+          darkMode={darkMode}
         />
 
         {/* DASHBOARD */}
@@ -76,6 +94,7 @@ function App() {
           toggleTheme={toggleTheme}
           darkMode={darkMode}
           handleDownload={handleDownload}
+          navigateToSection={navigateToSection}
         />
 
       </div>
@@ -88,6 +107,7 @@ function App() {
             onClose={() => setIsProfile(false)}
             isAuthenticated={isAuthenticated}
             handleDownload={handleDownload}
+            darkMode={darkMode}
           />
         )}
 

@@ -6,32 +6,91 @@ import oscar from '../../assets/background-one.jpg'
 import qrcode from '../../assets/qrcode.jfif'
 
 // ICONS
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { MdDownload, MdInfo, MdOutlineLightMode, MdOutlineDarkMode } from 'react-icons/md';
+import { FaGithub, FaLinkedin, FaTwitter, FaArrowRight } from 'react-icons/fa';
+import { MdDownload, MdOutlineLightMode, MdOutlineDarkMode, MdCode, MdWork, MdSchool } from 'react-icons/md';
 import { IoIosArrowForward } from 'react-icons/io';
+import { AiFillStar } from "react-icons/ai";
+import { BsAward } from "react-icons/bs";
+import { BiSolidMessageDetail } from "react-icons/bi";
 import { motion } from 'framer-motion';
 
 // DATABASE
-import { portfolioStats, featuredProjects } from "../Database/AboutData";
+import { featuredProjects } from "../Database/AboutData";
 
-function About({ darkMode, toggleTheme, handleDownload }) {
-    const [activeTab, setActiveTab] = useState('featured');
+// Navigation cards data with click handlers
+const portfolioStats = [
+    {
+        id: 1,
+        title: "PROJECTS",
+        navigateTo: "Featured",
+        icon: <AiFillStar className="folder-icon" />,
+        count: "3+",
+        color: "#ef4444",
+        gradient: "linear-gradient(135deg, #ef4444 0%, #f97316 100%)",
+        description: "View my featured projects"
+    },
+    {
+        id: 2,
+        title: "EXPERIENCE",
+        navigateTo: "Experience",
+        icon: <MdWork className="folder-icon" />,
+        count: "1+",
+        subtitle: "Years",
+        color: "#8b5cf6",
+        gradient: "linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)",
+        description: "See my work history"
+    },
+    {
+        id: 3,
+        title: "SKILLS",
+        navigateTo: "Skills",
+        icon: <MdCode className="folder-icon" />,
+        count: "10+",
+        color: "#10b981",
+        gradient: "linear-gradient(135deg, #10b981 0%, #34d399 100%)",
+        description: "Explore my tech stack"
+    },
+    {
+        id: 4,
+        title: "EDUCATION",
+        navigateTo: "Education",
+        icon: <MdSchool className="folder-icon" />,
+        count: "2+",
+        subtitle: "Degrees",
+        color: "#f59e0b",
+        gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)",
+        description: "View my qualifications"
+    }
+];
+
+function About({ darkMode, toggleTheme, handleDownload, navigateToSection }) {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [activeTab, setActiveTab] = useState('featured');
+    const [hoveredCard, setHoveredCard] = useState(null);
 
-    // Scroll event handler
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
+        const handleScroll = (e) => {
+            const target = e.target;
+            if (target.scrollTop > 50) {
                 setIsScrolled(true);
             } else {
                 setIsScrolled(false);
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        const container = document.querySelector('.Child-dashboard');
+        if (container) {
+            container.addEventListener('scroll', handleScroll);
+            return () => container.removeEventListener('scroll', handleScroll);
+        }
     }, []);
 
+    // Handle card click - navigate to section
+    const handleCardClick = (section) => {
+        if (navigateToSection) {
+            navigateToSection(section);
+        }
+    };
 
     // Animation variants
     const containerVariants = {
@@ -40,19 +99,20 @@ function About({ darkMode, toggleTheme, handleDownload }) {
             opacity: 1,
             transition: {
                 when: "beforeChildren",
-                staggerChildren: 0.2
+                staggerChildren: 0.1
             }
         }
     };
 
     const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
+        hidden: { y: 30, opacity: 0 },
         visible: {
             y: 0,
             opacity: 1,
             transition: {
                 type: "spring",
-                stiffness: 100
+                stiffness: 100,
+                damping: 12
             }
         }
     };
@@ -60,9 +120,14 @@ function About({ darkMode, toggleTheme, handleDownload }) {
     return (
         <div className={`about-container ${darkMode ? 'dark-theme' : ''}`}>
             {/* Floating Theme Toggle */}
-            <button className="theme-toggle" onClick={toggleTheme}>
+            <motion.button 
+                className="theme-toggle" 
+                onClick={toggleTheme}
+                whileHover={{ scale: 1.1, rotate: 15 }}
+                whileTap={{ scale: 0.9 }}
+            >
                 {darkMode ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
-            </button>
+            </motion.button>
 
             {/* HEADER SECTION */}
             <div className={`about-header ${isScrolled ? 'scrolled' : ''}`}>
@@ -86,10 +151,15 @@ function About({ darkMode, toggleTheme, handleDownload }) {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button download-btn primary" onClick={handleDownload}>
+                    <motion.button 
+                        className="action-button download-btn primary" 
+                        onClick={handleDownload}
+                        whileHover={{ scale: 1.02, x: 3 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
                         <MdDownload className="action-icon" />
                         <span className="mobileSideBar">Download CV</span>
-                    </button>
+                    </motion.button>
                 </motion.div>
             </div>
 
@@ -111,14 +181,21 @@ function About({ darkMode, toggleTheme, handleDownload }) {
                                 alt="Oscar Kyle Poco"
                                 className="avatar-image"
                             />
-                            <div className="profile-badge">
+                            <motion.div 
+                                className="profile-badge"
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ delay: 0.5, type: "spring" }}
+                            >
                                 <span>5+</span>
-                            </div>
+                            </motion.div>
                         </div>
                         <div className="social-links">
                             <motion.a
                                 href="https://github.com/Oscarpoco"
                                 className="social-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 whileHover={{ y: -5, scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                             >
@@ -127,6 +204,8 @@ function About({ darkMode, toggleTheme, handleDownload }) {
                             <motion.a
                                 href="https://linkedin.com/in/oscar-poco-71528016b/"
                                 className="social-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 whileHover={{ y: -5, scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                             >
@@ -135,6 +214,8 @@ function About({ darkMode, toggleTheme, handleDownload }) {
                             <motion.a
                                 href="https://x.com/PocoOscar"
                                 className="social-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 whileHover={{ y: -5, scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
                             >
@@ -148,7 +229,14 @@ function About({ darkMode, toggleTheme, handleDownload }) {
                     >
                         <div className="name-badge">
                             <h1 className="profile-name">Oscar Kyle Poco</h1>
-                            <span className="status-badge">Available for hire</span>
+                            <motion.span 
+                                className="status-badge"
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.6 }}
+                            >
+                                Available for hire
+                            </motion.span>
                         </div>
                         <h2 className="profile-title">Junior React Developer</h2>
                         <p className="profile-description">
@@ -157,35 +245,37 @@ function About({ darkMode, toggleTheme, handleDownload }) {
                             experience building scalable solutions for various industries.
                         </p>
                         <div className="skills-container">
-                            <span className="skill-tag">React.js</span>
-                            <span className="skill-tag">TypeScript</span>
-                            <span className="skill-tag">Node.js</span>
-                            <span className="skill-tag">Redux</span>
-                            <span className="skill-tag">React Native</span>
-                            <span className="skill-tag">UI/UX</span>
+                            {['React.js', 'TypeScript', 'Node.js', 'Redux', 'React Native', 'UI/UX'].map((skill, index) => (
+                                <motion.span 
+                                    key={skill}
+                                    className="skill-tag"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: 0.4 + index * 0.1 }}
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                >
+                                    {skill}
+                                </motion.span>
+                            ))}
                         </div>
                         <div className="profile-stats">
-                            <motion.div
-                                className="Stat-item"
-                                whileHover={{ y: -5, scale: 1.05 }}
-                            >
-                                <span className="stat-value">100%</span>
-                                <span className="Stat-label">Client Satisfaction</span>
-                            </motion.div>
-                            <motion.div
-                                className="Stat-item"
-                                whileHover={{ y: -5, scale: 1.05 }}
-                            >
-                                <span className="stat-value">3+</span>
-                                <span className="Stat-label">Projects Completed</span>
-                            </motion.div>
-                            <motion.div
-                                className="Stat-item"
-                                whileHover={{ y: -5, scale: 1.05 }}
-                            >
-                                <span className="stat-value">1+</span>
-                                <span className="Stat-label">Years of Experience</span>
-                            </motion.div>
+                            {[
+                                { value: '100%', label: 'Client Satisfaction' },
+                                { value: '3+', label: 'Projects Completed' },
+                                { value: '1+', label: 'Years of Experience' }
+                            ].map((stat, index) => (
+                                <motion.div
+                                    key={stat.label}
+                                    className="Stat-item"
+                                    whileHover={{ y: -5, scale: 1.05 }}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.5 + index * 0.1 }}
+                                >
+                                    <span className="stat-value">{stat.value}</span>
+                                    <span className="Stat-label">{stat.label}</span>
+                                </motion.div>
+                            ))}
                         </div>
                     </motion.div>
                 </div>
@@ -196,41 +286,46 @@ function About({ darkMode, toggleTheme, handleDownload }) {
                 >
                     <img src={qrcode} alt="qrcode" className="qrcode-image" />
                     <motion.h3 className="scan-tag">SCAN TO DOWNLOAD RESUME</motion.h3>
-
                 </motion.div>
-
             </motion.div>
 
-            {/* QUICK ACCESS SECTION */}
+            {/* QUICK ACCESS SECTION - CLICKABLE CARDS */}
             <motion.div
                 className="quick-access-section"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
             >
                 <div className="section-header">
-                    <h2>PORTFOLIO OVERVIEW</h2>
+                    <h2>QUICK ACCESS</h2>
+                    <p className="section-subtitle">Click a card to navigate</p>
                 </div>
 
                 <div className="folders-container">
                     {portfolioStats.map((stat, index) => (
                         <motion.div
-                            className="folder-card"
+                            className={`folder-card ${hoveredCard === stat.id ? 'hovered' : ''}`}
                             key={stat.id}
                             style={{ background: stat.gradient }}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 * index, duration: 0.5 }}
+                            transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
                             whileHover={{
-                                y: -10,
-                                boxShadow: "0 20px 30px rgba(0, 0, 0, 0.15)"
+                                y: -12,
+                                scale: 1.02,
+                                boxShadow: "0 25px 50px rgba(0, 0, 0, 0.25)"
                             }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={() => handleCardClick(stat.navigateTo)}
+                            onHoverStart={() => setHoveredCard(stat.id)}
+                            onHoverEnd={() => setHoveredCard(null)}
                         >
                             <div className="folder-header">
                                 <div className="folder-title">{stat.title}</div>
                                 <motion.div
                                     className="folder-icon-container"
-                                    whileHover={{ rotate: 15 }}
+                                    animate={{ rotate: hoveredCard === stat.id ? 15 : 0 }}
+                                    transition={{ duration: 0.3 }}
                                 >
                                     {stat.icon}
                                 </motion.div>
@@ -240,38 +335,26 @@ function About({ darkMode, toggleTheme, handleDownload }) {
                                     className="count-number"
                                     initial={{ opacity: 0, scale: 0.5 }}
                                     animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: 0.5 + (0.2 * index), duration: 0.5 }}
+                                    transition={{ delay: 0.5 + (0.1 * index), duration: 0.5 }}
                                 >
                                     {stat.count}
                                 </motion.span>
                                 {stat.subtitle && <span className="count-subtitle">{stat.subtitle}</span>}
                             </div>
-                            <div className="folder-users">
-                                {stat.users.map((user, userIndex) => (
-                                    <motion.div
-                                        className="user-avatar"
-                                        key={userIndex}
-                                        style={{
-                                            backgroundImage: `url(${user})`,
-                                            zIndex: stat.users.length - userIndex
-                                        }}
-                                        initial={{ x: 20 * userIndex, opacity: 0 }}
-                                        animate={{ x: 0, opacity: 1 }}
-                                        transition={{ delay: 0.7 + (0.1 * userIndex), duration: 0.3 }}
-                                    />
-                                ))}
+                            <p className="folder-description">{stat.description}</p>
+                            <motion.div 
+                                className="folder-cta"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: hoveredCard === stat.id ? 1 : 0.7 }}
+                            >
+                                <span>Explore</span>
                                 <motion.div
-                                    className="user-avatar more"
-                                    initial={{ scale: 0 }}
-                                    animate={{ scale: 1 }}
-                                    transition={{ delay: 1, duration: 0.3 }}
+                                    animate={{ x: hoveredCard === stat.id ? 5 : 0 }}
+                                    transition={{ duration: 0.2 }}
                                 >
-                                    <span>+{stat.id + 3}</span>
+                                    <FaArrowRight />
                                 </motion.div>
-                            </div>
-                            <div className="folder-metadata">
-                                <span className="last-modified">Updated: Today</span>
-                            </div>
+                            </motion.div>
                         </motion.div>
                     ))}
                 </div>
@@ -282,7 +365,7 @@ function About({ darkMode, toggleTheme, handleDownload }) {
                 className="projects-section"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8, duration: 0.6 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
             >
                 <div className="projects-tabs">
                     <button
@@ -328,6 +411,7 @@ function About({ darkMode, toggleTheme, handleDownload }) {
                                 custom={index}
                                 whileHover={{
                                     scale: 1.01,
+                                    x: 5,
                                     backgroundColor: darkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(35, 99, 199, 0.03)',
                                 }}
                             >
@@ -348,18 +432,39 @@ function About({ darkMode, toggleTheme, handleDownload }) {
                                     <span className="project-type">{project.type}</span>
                                 </div>
                                 <div className="table-column actions-column">
-                                    <motion.button
+                                    <motion.a
+                                        href={project.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="view-project-btn"
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                     >
                                         View
-                                    </motion.button>
+                                    </motion.a>
                                 </div>
                             </motion.div>
                         ))}
                     </motion.div>
                 </div>
+
+                {/* View All Projects CTA */}
+                <motion.div 
+                    className="view-all-projects"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                >
+                    <motion.button 
+                        className="view-all-btn"
+                        onClick={() => handleCardClick('Featured')}
+                        whileHover={{ scale: 1.02, x: 5 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <span>View All Projects</span>
+                        <FaArrowRight />
+                    </motion.button>
+                </motion.div>
             </motion.div>
         </div>
     );

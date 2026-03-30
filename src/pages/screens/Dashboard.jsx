@@ -1,4 +1,5 @@
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // STYLING
 import '../styles/Dashboard.css'
@@ -14,39 +15,66 @@ import Contacts from "./Contact";
 import Error404 from "./Error404";
 
 
-function Dashboard({ activeItem, isAuthenticated, darkMode, toggleTheme, handleDownload }) {
+function Dashboard({ activeItem, isAuthenticated, darkMode, toggleTheme, handleDownload, navigateToSection }) {
 
+    const pageVariants = {
+        initial: { opacity: 0, x: 20, scale: 0.98 },
+        in: { opacity: 1, x: 0, scale: 1 },
+        out: { opacity: 0, x: -20, scale: 0.98 }
+    };
+
+    const pageTransition = {
+        type: "tween",
+        ease: "anticipate",
+        duration: 0.4
+    };
 
     const renderContent = () => {
+        const props = {
+            toggleTheme,
+            darkMode,
+            handleDownload,
+            navigateToSection,
+            isAuthenticated
+        };
+
         switch (activeItem) {
             case "Dashboard":
-                return <About toggleTheme={toggleTheme} darkMode={darkMode} handleDownload={handleDownload} />;
+                return <About key="dashboard" {...props} />;
             case "Skills":
-                return <Skills toggleTheme={toggleTheme} darkMode={darkMode} handleDownload={handleDownload} />;
+                return <Skills key="skills" {...props} />;
             case "Experience":
-                return <Experience toggleTheme={toggleTheme} darkMode={darkMode} handleDownload={handleDownload} />;
+                return <Experience key="experience" {...props} />;
             case "Education":
-                return <Education toggleTheme={toggleTheme} darkMode={darkMode} handleDownload={handleDownload} />;
+                return <Education key="education" {...props} />;
             case "Featured":
-                return <Featured isAuthenticated={isAuthenticated} toggleTheme={toggleTheme} darkMode={darkMode} handleDownload={handleDownload} />;
+                return <Featured key="featured" {...props} />;
             case "Testimonials":
-                return <Testimonials toggleTheme={toggleTheme} darkMode={darkMode} handleDownload={handleDownload} />;
+                return <Testimonials key="testimonials" {...props} />;
             case "Contact":
-                return <Contacts toggleTheme={toggleTheme} darkMode={darkMode} handleDownload={handleDownload} />;
+                return <Contacts key="contact" {...props} />;
             default:
-                return <Error404 />;
+                return <Error404 key="error" />;
         }
     };
 
     return (
-        <div className="Parent-dashboard">
-
+        <div className={`Parent-dashboard ${darkMode ? 'dark-mode' : ''}`}>
             <div className="Child-dashboard">
-
-                {renderContent()}
-
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeItem}
+                        initial="initial"
+                        animate="in"
+                        exit="out"
+                        variants={pageVariants}
+                        transition={pageTransition}
+                        className="dashboard-content-wrapper"
+                    >
+                        {renderContent()}
+                    </motion.div>
+                </AnimatePresence>
             </div>
-
         </div>
     );
 }

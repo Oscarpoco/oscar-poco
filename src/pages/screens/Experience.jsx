@@ -1,160 +1,308 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useInView, useAnimation } from 'framer-motion';
 
 // STYLING
-import '../styles/About.css';
 import '../styles/Experience.css';
 
 // ICONS 
-import { MdDownload, MdInfo, MdOutlineLightMode, MdOutlineDarkMode, MdLocationOn } from 'react-icons/md';
+import { MdDownload, MdOutlineLightMode, MdOutlineDarkMode, MdLocationOn, MdWork, MdDateRange } from 'react-icons/md';
 import { IoIosArrowForward } from 'react-icons/io';
-import { FaCalendarAlt } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { FaCalendarAlt, FaBriefcase, FaBuilding } from 'react-icons/fa';
+import { BsArrowRight } from 'react-icons/bs';
 
 // DATABASE
 import { experienceData } from "../Database/ExperienceData";
 
-function Experience({darkMode, toggleTheme, handleDownload}) {
+// Animated Experience Card with scroll reveal
+function ExperienceCard({ exp, index, isActive, onHover }) {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
+    const controls = useAnimation();
+    const [isHovered, setIsHovered] = useState(false);
+
+    useEffect(() => {
+        if (isInView) {
+            controls.start("visible");
+        }
+    }, [isInView, controls]);
+
+    const cardVariants = {
+        hidden: {
+            opacity: 0,
+            x: index % 2 === 0 ? -80 : 80,
+            y: 30
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            transition: {
+                duration: 0.7,
+                delay: index * 0.15,
+                ease: [0.25, 0.46, 0.45, 0.94]
+            }
+        }
+    };
+
+    return (
+        <motion.div
+            ref={ref}
+            className={`experience-card-premium ${isActive ? 'active' : ''} ${isHovered ? 'hovered' : ''}`}
+            variants={cardVariants}
+            initial="hidden"
+            animate={controls}
+            onMouseEnter={() => {
+                setIsHovered(true);
+                onHover(index);
+            }}
+            onMouseLeave={() => setIsHovered(false)}
+            whileHover={{
+                y: -15,
+                transition: { duration: 0.3 }
+            }}
+        >
+            {/* Timeline connector */}
+            <motion.div 
+                className="timeline-connector"
+                initial={{ height: 0 }}
+                animate={isInView ? { height: "100%" } : {}}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+            />
+
+            {/* Timeline dot */}
+            <motion.div
+                className="timeline-dot"
+                initial={{ scale: 0 }}
+                animate={isInView ? { scale: 1 } : {}}
+                transition={{ duration: 0.4, delay: index * 0.2 + 0.3, type: "spring" }}
+            >
+                <motion.div
+                    className="dot-pulse"
+                    animate={{
+                        scale: isHovered ? [1, 1.5, 1] : 1,
+                        opacity: isHovered ? [0.5, 0, 0.5] : 0
+                    }}
+                    transition={{ duration: 1.5, repeat: isHovered ? Infinity : 0 }}
+                />
+            </motion.div>
+
+            {/* Card accent */}
+            <motion.div
+                className="card-accent"
+                animate={{
+                    height: isHovered ? "100%" : "100%",
+                    opacity: isHovered ? 1 : 0.7
+                }}
+                transition={{ duration: 0.3 }}
+            />
+
+            {/* Icon */}
+            <motion.div
+                className="experience-icon"
+                animate={{
+                    rotate: isHovered ? 360 : 0,
+                    scale: isHovered ? 1.1 : 1
+                }}
+                transition={{ duration: 0.5 }}
+            >
+                {exp.icon}
+            </motion.div>
+
+            {/* Content */}
+            <div className="experience-content">
+                <div className="experience-header">
+                    <motion.h3
+                        className="experience-position"
+                        animate={{ color: isHovered ? "var(--primary)" : "var(--text-primary)" }}
+                    >
+                        {exp.position}
+                    </motion.h3>
+                    <span className="experience-company">{exp.company}</span>
+                </div>
+
+                <div className="experience-meta">
+                    <div className="meta-item">
+                        <FaCalendarAlt className="meta-icon" />
+                        <span>{exp.period}</span>
+                    </div>
+                    <div className="meta-item">
+                        <MdLocationOn className="meta-icon" />
+                        <span>{exp.location}</span>
+                    </div>
+                </div>
+
+                <motion.p
+                    className="experience-description"
+                    initial={{ opacity: 0.8 }}
+                    animate={{ opacity: isHovered ? 1 : 0.8 }}
+                >
+                    {exp.description}
+                </motion.p>
+
+                <div className="experience-technologies">
+                    {exp.technologies.map((tech, techIndex) => (
+                        <motion.span
+                            key={techIndex}
+                            className="tech-tag"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                            transition={{ delay: index * 0.15 + techIndex * 0.05 + 0.4 }}
+                            whileHover={{ scale: 1.1, y: -3 }}
+                        >
+                            {tech}
+                        </motion.span>
+                    ))}
+                </div>
+            </div>
+
+            {/* View Details Arrow */}
+            <motion.div
+                className="view-details"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -10 }}
+            >
+                <BsArrowRight />
+            </motion.div>
+        </motion.div>
+    );
+}
+
+function Experience({ darkMode, toggleTheme, handleDownload }) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
-   
+
     useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
+        const handleScroll = (e) => {
+            const target = e.target;
+            if (target.scrollTop > 50) {
                 setIsScrolled(true);
             } else {
                 setIsScrolled(false);
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        const container = document.querySelector('.Child-dashboard');
+        if (container) {
+            container.addEventListener('scroll', handleScroll);
+            return () => container.removeEventListener('scroll', handleScroll);
+        }
     }, []);
-    
-    
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: { 
-            opacity: 1,
-            transition: { 
-                when: "beforeChildren",
-                staggerChildren: 0.2
-            }
-        }
-    };
 
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: { 
-            y: 0, 
-            opacity: 1,
-            transition: {
-                type: "spring",
-                stiffness: 100
-            }
-        }
-    };
-
+    // Calculate total years
+    const totalYears = experienceData?.length || 0;
 
     return (
-        <div className={`about-container ${darkMode ? 'dark-theme' : ''}`}>
+        <div className={`experience-container ${darkMode ? 'dark-theme' : ''}`}>
             {/* Floating Theme Toggle */}
-            <button className="theme-toggle" onClick={toggleTheme}>
+            <motion.button
+                className="theme-toggle"
+                onClick={toggleTheme}
+                whileHover={{ scale: 1.1, rotate: 15 }}
+                whileTap={{ scale: 0.9 }}
+            >
                 {darkMode ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
-            </button>
+            </motion.button>
 
             {/* HEADER SECTION */}
-            <div className={`about-header ${isScrolled ? 'scrolled' : ''}`}>
-                <motion.div 
-                    className="header-left"
-                    initial={{ x: -50, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <h1>My Portfolio</h1>
+            <motion.div
+                className={`experience-header ${isScrolled ? 'scrolled' : ''}`}
+                initial={{ y: -30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+            >
+                <div className="header-left">
+                    <h1 className="page-title">Work Experience</h1>
                     <div className="breadcrumb">
-                        <span>Dashboard</span>
+                        <span>Portfolio</span>
                         <IoIosArrowForward className="breadcrumb-icon" />
-                        <span className="current-page">Work Experience</span>
+                        <span className="current-page">Experience</span>
                     </div>
-                </motion.div>
-                
-                <motion.div 
+                </div>
+
+                <motion.div
                     className="header-actions"
                     initial={{ x: 50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <button className="action-button download-btn primary" onClick={handleDownload}>
-                        <MdDownload className="action-icon" />
-                        <span className="mobileSideBar">Download CV</span>
-                    </button>
+                    <motion.button
+                        className="download-btn"
+                        onClick={handleDownload}
+                        whileHover={{ scale: 1.02, x: 3 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <MdDownload className="btn-icon" />
+                        <span className="btn-text">Download CV</span>
+                    </motion.button>
                 </motion.div>
-            </div>
+            </motion.div>
 
-            <div className="skills-section-wrapper">
-                <div className="section-header">
-                    <h2 className="section-title">Work Experience</h2>
-                </div>
-            </div>
-
-            {/* MODERN EXPERIENCE CARDS SECTION */}
-            <motion.div 
-                className="modern-experience-container"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
+            {/* STATS BANNER */}
+            <motion.div
+                className="experience-stats-banner"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
             >
-
-                <div className="experience-cards">
-                    {experienceData.map((exp, index) => (
-                        <motion.div 
-                            key={exp.id}
-                            className={`experience-card ${index === activeIndex ? 'active' : ''}`}
-                            variants={itemVariants}
-                            onMouseEnter={() => setActiveIndex(index)}
-                            whileHover={{ 
-                                y: -10,
-                                transition: { duration: 0.3 }
-                            }}
-                        >
-                            <div className="experience-card-accent"></div>
-                            <div className="experience-card-icon">
-                                {exp.icon}
-                            </div>
-                            
-                            <div className="experience-card-content">
-                                <div className="experience-card-header">
-                                    <h3 className="experience-position">{exp.position}</h3>
-                                    <span className="experience-company">{exp.company}</span>
-                                </div>
-                                
-                                <div className="experience-card-meta">
-                                    <div className="experience-period">
-                                        <FaCalendarAlt className="experience-meta-icon" />
-                                        <span>{exp.period}</span>
-                                    </div>
-                                    <div className="experience-location">
-                                        <MdLocationOn className="experience-meta-icon" />
-                                        <span>{exp.location}</span>
-                                    </div>
-                                </div>
-                                
-                                <p className="experience-description">
-                                    {exp.description}
-                                </p>
-                                
-                                <div className="experience-tech-container">
-                                    {exp.technologies.map((tech, techIndex) => (
-                                        <span key={techIndex} className="experience-tech-tag">
-                                            {tech}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
+                <div className="stat-item">
+                    <div className="stat-icon">
+                        <FaBriefcase />
+                    </div>
+                    <div className="stat-info">
+                        <span className="stat-value">{totalYears}+</span>
+                        <span className="stat-label">Positions</span>
+                    </div>
+                </div>
+                <div className="stat-divider" />
+                <div className="stat-item">
+                    <div className="stat-icon">
+                        <MdDateRange />
+                    </div>
+                    <div className="stat-info">
+                        <span className="stat-value">1+</span>
+                        <span className="stat-label">Years</span>
+                    </div>
+                </div>
+                <div className="stat-divider" />
+                <div className="stat-item">
+                    <div className="stat-icon">
+                        <FaBuilding />
+                    </div>
+                    <div className="stat-info">
+                        <span className="stat-value">{totalYears}</span>
+                        <span className="stat-label">Companies</span>
+                    </div>
                 </div>
             </motion.div>
+
+            {/* SECTION HEADER */}
+            <motion.div
+                className="section-intro"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+            >
+                <h2 className="section-title">
+                    <span className="title-accent" />
+                    Professional Journey
+                </h2>
+                <p className="section-subtitle">
+                    My career path and the valuable experiences that have shaped me as a developer.
+                </p>
+            </motion.div>
+
+            {/* EXPERIENCE TIMELINE */}
+            <div className="experience-timeline">
+                {experienceData && experienceData.map((exp, index) => (
+                    <ExperienceCard
+                        key={exp.id}
+                        exp={exp}
+                        index={index}
+                        isActive={index === activeIndex}
+                        onHover={setActiveIndex}
+                    />
+                ))}
+            </div>
         </div>
     );
 }
