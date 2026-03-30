@@ -259,7 +259,7 @@ function Experience({ darkMode, toggleTheme, handleDownload }) {
                         <MdDateRange />
                     </div>
                     <div className="stat-info">
-                        <span className="stat-value">1+</span>
+                        <span className="stat-value">3+</span>
                         <span className="stat-label">Years</span>
                     </div>
                 </div>
@@ -273,22 +273,6 @@ function Experience({ darkMode, toggleTheme, handleDownload }) {
                         <span className="stat-label">Companies</span>
                     </div>
                 </div>
-            </motion.div>
-
-            {/* SECTION HEADER */}
-            <motion.div
-                className="section-intro"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-            >
-                <h2 className="section-title">
-                    <span className="title-accent" />
-                    Professional Journey
-                </h2>
-                <p className="section-subtitle">
-                    My career path and the valuable experiences that have shaped me as a developer.
-                </p>
             </motion.div>
 
             {/* EXPERIENCE TIMELINE */}

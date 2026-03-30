@@ -204,30 +204,7 @@ function Skills({ darkMode, toggleTheme, handleDownload }) {
                 </motion.div>
             </motion.div>
 
-            {/* STATS SECTION */}
-            <div className="skills-stats">
-                <StatsCard
-                    icon={<MdCode />}
-                    value={`${totalSkills}+`}
-                    label="Technologies"
-                    color="#2363C7"
-                    delay={0.1}
-                />
-                <StatsCard
-                    icon={<FaStar />}
-                    value="1+"
-                    label="Years Experience"
-                    color="#f59e0b"
-                    delay={0.2}
-                />
-                <StatsCard
-                    icon={<BsLightningChargeFill />}
-                    value="100%"
-                    label="Commitment"
-                    color="#10b981"
-                    delay={0.3}
-                />
-            </div>
+
 
             {/* SECTION HEADER */}
             <motion.div

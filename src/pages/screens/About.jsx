@@ -34,7 +34,7 @@ const portfolioStats = [
         title: "EXPERIENCE",
         navigateTo: "Experience",
         icon: <MdWork className="folder-icon" />,
-        count: "1+",
+        count: "3+",
         subtitle: "Years",
         color: "#8b5cf6",
         gradient: "linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%)",
@@ -52,14 +52,14 @@ const portfolioStats = [
     },
     {
         id: 4,
-        title: "EDUCATION",
+        title: "CERTIFICATIONS",
         navigateTo: "Education",
         icon: <MdSchool className="folder-icon" />,
         count: "2+",
-        subtitle: "Degrees",
+        subtitle: "Certs",
         color: "#f59e0b",
         gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)",
-        description: "View my qualifications"
+        description: "View my certifications"
     }
 ];
 
@@ -238,11 +238,14 @@ function About({ darkMode, toggleTheme, handleDownload, navigateToSection }) {
                                 Available for hire
                             </motion.span>
                         </div>
-                        <h2 className="profile-title">Junior React Developer</h2>
+                        <h2 className="profile-title">React Developer</h2>
                         <p className="profile-description">
                             Passionate developer with a knack for creating elegant, responsive and user-friendly
-                            web applications. Specialized in React.js ecosystem with 1+ years of professional
+                            web applications. Specialized in React.js ecosystem with 3+ years of professional
                             experience building scalable solutions for various industries.
+                        </p>
+                        <p className="portfolio-update-date">
+                            Last updated: March 2026
                         </p>
                         <div className="skills-container">
                             {['React.js', 'TypeScript', 'Node.js', 'Redux', 'React Native', 'UI/UX'].map((skill, index) => (
@@ -262,7 +265,7 @@ function About({ darkMode, toggleTheme, handleDownload, navigateToSection }) {
                             {[
                                 { value: '100%', label: 'Client Satisfaction' },
                                 { value: '3+', label: 'Projects Completed' },
-                                { value: '1+', label: 'Years of Experience' }
+                                { value: '3+', label: 'Years of Experience' }
                             ].map((stat, index) => (
                                 <motion.div
                                     key={stat.label}

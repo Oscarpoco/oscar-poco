@@ -135,7 +135,13 @@ body {
     border: var(--glass-border);
 }
 
+/* Light mode: solid blue only */
 .gradient-text {
+    color: var(--primary);
+}
+
+/* Dark mode: allow gradient */
+.dark-theme .gradient-text {
     background: var(--primary-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

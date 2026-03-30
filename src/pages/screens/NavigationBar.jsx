@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import '../styles/NavigationBar.css';
 
 // ICONS
-import { FaCode } from "react-icons/fa";
+import { FaBriefcase } from "react-icons/fa";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 // IMAGE
@@ -29,7 +29,7 @@ function NavigationBar({ onOpen, darkMode, toggleTheme, activeItem }) {
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <FaCode className="logo-icon" />
+                    <FaBriefcase className="logo-icon" />
                 </motion.div>
                 <div className="portfolio-text">
                     <h2 className="Portfolio-h2">Portfolio</h2>
